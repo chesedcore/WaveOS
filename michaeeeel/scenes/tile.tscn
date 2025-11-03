@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqg12wcjg81wg"]
+
+[ext_resource type="Texture2D" uid="uid://d2a88naql3mqc" path="res://assets/temp/isometric tileset/separated images/tile_024.png" id="1_3dk36"]
+
+[node name="Tile" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3dk36")
