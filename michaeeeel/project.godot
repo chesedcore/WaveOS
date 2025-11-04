@@ -10,15 +10,15 @@ config_version=5
 
 [application]
 
-config/name="MICHAEEEEL"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/name="Demo"
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
-[display]
+[autoload]
 
-window/stretch/mode="canvas_items"
+Bus="*res://core/auto/bus.gd"
+Gamestate="*res://core/auto/gamestate.gd"
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
