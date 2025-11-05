@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://h4l48cwtgiwe"]
+[gd_scene load_steps=10 format=3 uid="uid://h4l48cwtgiwe"]
 
 [ext_resource type="Texture2D" uid="uid://c0p2os64tctdm" path="res://assets/bliss.jpg" id="1_jqvav"]
-[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_fxvci"]
+[ext_resource type="Script" uid="uid://dbux11tjp7vmi" path="res://scripts/ui/better_grid_container.gd" id="2_yp4ya"]
 [ext_resource type="Shader" uid="uid://2vk0mfq3l1sa" path="res://shadercode/crtshader.gdshader" id="3_fxvci"]
+[ext_resource type="PackedScene" uid="uid://bxu1giuebiy7r" path="res://scenes/program_icon.tscn" id="3_yp4ya"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxoc4"]
 
@@ -26,11 +27,11 @@ shader_parameter/has_tint = true
 shader_parameter/tint = Color(1.1480001, 1.1480001, 1.1480001, 1)
 shader_parameter/quantize = false
 shader_parameter/dithering = false
-shader_parameter/scanline = true
-shader_parameter/chromatic_abberation = false
-shader_parameter/chromatic_abberation_amount = 1.0
+shader_parameter/scanline = false
+shader_parameter/chromatic_abberation = true
+shader_parameter/chromatic_abberation_amount = 0.01
 shader_parameter/darkest_black = 0.1
-shader_parameter/speed = 2.0
+shader_parameter/speed = 0.05
 shader_parameter/warp_amount = 0.01
 shader_parameter/vignette_intensity = 0.2
 shader_parameter/vignette_opacity = 0.250000011875
@@ -70,31 +71,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgramsContainer" type="GridContainer" parent="Screen/Screen"]
+[node name="Control" type="Container" parent="Screen/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
-columns = 3
+script = ExtResource("2_yp4ya")
 
-[node name="Program" type="MarginContainer" parent="Screen/Screen/ProgramsContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Screen/ProgramsContainer/Program"]
+[node name="Program" parent="Screen/Screen/Control" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="Screen/Screen/ProgramsContainer/Program/VBoxContainer"]
+[node name="Program2" parent="Screen/Screen/Control" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
-texture = ExtResource("2_fxvci")
 
-[node name="Name" type="RichTextLabel" parent="Screen/Screen/ProgramsContainer/Program/VBoxContainer"]
+[node name="Program3" parent="Screen/Screen/Control" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
-text = "Godot Engine"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="Program4" parent="Screen/Screen/Control" instance=ExtResource("3_yp4ya")]
+layout_mode = 2
+
+[node name="Program5" parent="Screen/Screen/Control" instance=ExtResource("3_yp4ya")]
+layout_mode = 2
 
 [node name="Titlebar" type="HBoxContainer" parent="Screen/Screen"]
 custom_minimum_size = Vector2(0, 30)
@@ -123,6 +118,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_yp4ya")
 
 [node name="Shaders" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CRT" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_yp4ya")
