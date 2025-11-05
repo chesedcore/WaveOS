@@ -1,0 +1,135 @@
+[gd_scene load_steps=9 format=3 uid="uid://h4l48cwtgiwe"]
+
+[ext_resource type="Texture2D" uid="uid://c0p2os64tctdm" path="res://assets/bliss.jpg" id="1_jqvav"]
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_fxvci"]
+[ext_resource type="Shader" uid="uid://2vk0mfq3l1sa" path="res://shadercode/crtshader.gdshader" id="3_fxvci"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxoc4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxvci"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.49803922, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxoc4"]
+resource_local_to_scene = true
+bg_color = Color(0.44313726, 0.49803922, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp4ya"]
+resource_local_to_scene = true
+bg_color = Color(0.6403895, 0.6984645, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yp4ya"]
+resource_local_to_scene = true
+shader = ExtResource("3_fxvci")
+shader_parameter/gaydar = false
+shader_parameter/has_tint = true
+shader_parameter/tint = Color(1.1480001, 1.1480001, 1.1480001, 1)
+shader_parameter/quantize = false
+shader_parameter/dithering = false
+shader_parameter/scanline = false
+shader_parameter/chromatic_abberation = false
+shader_parameter/chromatic_abberation_amount = 1.0
+shader_parameter/darkest_black = 0.1
+shader_parameter/speed = 2.0
+shader_parameter/warp_amount = 0.01
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/vignette_opacity = 0.250000011875
+
+[node name="OS" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_rxoc4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_jqvav")
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen" type="VBoxContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgramsContainer" type="GridContainer" parent="Screen/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="Program" type="MarginContainer" parent="Screen/Screen/ProgramsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/Screen/ProgramsContainer/Program"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Screen/Screen/ProgramsContainer/Program/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_fxvci")
+
+[node name="Name" type="RichTextLabel" parent="Screen/Screen/ProgramsContainer/Program/VBoxContainer"]
+layout_mode = 2
+text = "Godot Engine"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Titlebar" type="HBoxContainer" parent="Screen/Screen"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Start" type="PanelContainer" parent="Screen/Screen/Titlebar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxvci")
+
+[node name="StartText" type="RichTextLabel" parent="Screen/Screen/Titlebar/Start"]
+layout_mode = 2
+text = "Start "
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Taskbar" type="PanelContainer" parent="Screen/Screen/Titlebar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.8
+theme_override_styles/panel = SubResource("StyleBoxFlat_rxoc4")
+
+[node name="Tray" type="PanelContainer" parent="Screen/Screen/Titlebar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_yp4ya")
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="CRT" type="ColorRect" parent="Shaders"]
+material = SubResource("ShaderMaterial_yp4ya")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
