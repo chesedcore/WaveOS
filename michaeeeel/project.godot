@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Ace Combat 8"
+config/name="WaveOS"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/image="uid://bsw68k17jemb4"
 config/icon="res://icon.svg"
@@ -29,14 +29,9 @@ gdscript/warnings/unused_signal=0
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/table_container/plugin.cfg")
-
 [file_customization]
 
 folder_colors={
-"res://addons/": "gray",
 "res://assets/": "pink",
 "res://core/": "yellow",
 "res://scenes/": "blue",

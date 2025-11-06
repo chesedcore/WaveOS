@@ -1,26 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxu1giuebiy7r"]
+[gd_scene load_steps=4 format=3 uid="uid://bxu1giuebiy7r"]
 
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_ar5kf"]
 [ext_resource type="Script" uid="uid://5g2n6e72fu6q" path="res://scripts/ui/program_icon.gd" id="1_jbhb6"]
+[ext_resource type="Script" uid="uid://cu0p5jhxovsh3" path="res://scripts/centering_control.gd" id="3_7ehie"]
 
-[node name="Program" type="MarginContainer" node_paths=PackedStringArray("icon_rect")]
+[node name="ProgramIcon" type="MarginContainer" node_paths=PackedStringArray("icon_rect", "name_label")]
 custom_minimum_size = Vector2(148, 0)
-theme_override_constants/margin_left = 10
+anchors_preset = -1
+anchor_right = 0.12847222
+anchor_bottom = 0.22685185
+offset_right = -148.0
+offset_bottom = -147.0
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_jbhb6")
-icon_rect = NodePath("VBoxContainer/Icon")
+icon_rect = NodePath("FlowDown/Icon")
+name_label = NodePath("FlowDown/Name")
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="FlowDown" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="FlowDown"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("1_ar5kf")
-stretch_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_7ehie")
 
-[node name="Name" type="RichTextLabel" parent="VBoxContainer"]
+[node name="Name" type="RichTextLabel" parent="FlowDown"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]Godot Engine"

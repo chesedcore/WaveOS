@@ -1,34 +1,22 @@
-[gd_scene load_steps=18 format=3 uid="uid://h4l48cwtgiwe"]
+[gd_scene load_steps=12 format=3 uid="uid://h4l48cwtgiwe"]
 
 [ext_resource type="Texture2D" uid="uid://c0p2os64tctdm" path="res://assets/bliss.jpg" id="1_jqvav"]
 [ext_resource type="Script" uid="uid://dcevx0ghdvstp" path="res://scripts/screen_handler.gd" id="2_nd5ct"]
-[ext_resource type="Script" path="res://scripts/ui/better_grid_container.gd" id="2_yp4ya"]
+[ext_resource type="Script" uid="uid://dbux11tjp7vmi" path="res://scripts/ui/better_grid_container.gd" id="2_yp4ya"]
 [ext_resource type="Shader" uid="uid://2vk0mfq3l1sa" path="res://shadercode/crtshader.gdshader" id="3_fxvci"]
 [ext_resource type="PackedScene" uid="uid://bxu1giuebiy7r" path="res://scenes/program_icon.tscn" id="3_yp4ya"]
 [ext_resource type="PackedScene" uid="uid://dqqqaoq4a3qxj" path="res://scenes/titlebar.tscn" id="4_72ne2"]
-[ext_resource type="Script" uid="uid://cu0p5jhxovsh3" path="res://scenes/panel_container.gd" id="6_7pos1"]
-[ext_resource type="Texture2D" uid="uid://b2y08spwydouf" path="res://assets/MiniGame Assets/WaveOS/window_icons.png" id="6_nvlvj"]
-[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="7_5hobq"]
-[ext_resource type="PackedScene" uid="uid://craqbkxhbmer8" path="res://scenes/MiniGames/Beach Breaker/beach_breaker.tscn" id="9_s2aqv"]
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="5_7pos1"]
+[ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxoc4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd5ct"]
-bg_color = Color(0.03529412, 0.47843137, 1, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nvlvj"]
-atlas = ExtResource("6_nvlvj")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7pos1"]
-atlas = ExtResource("6_nvlvj")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5hobq"]
-atlas = ExtResource("6_nvlvj")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hobq"]
+[sub_resource type="Resource" id="Resource_7pos1"]
+resource_local_to_scene = true
+script = ExtResource("5_nvlvj")
+name = "Godot Engine"
+icon = ExtResource("5_7pos1")
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp4ya"]
 resource_local_to_scene = true
@@ -54,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="BG" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_rxoc4")
@@ -65,6 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_jqvav")
+metadata/_edit_lock_ = true
 
 [node name="ScreenHandler" type="Control" parent="." node_paths=PackedStringArray("program_dock")]
 layout_mode = 1
@@ -75,6 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_nd5ct")
 program_dock = NodePath("ProgramDock")
+metadata/_edit_lock_ = true
 
 [node name="Screen" type="VBoxContainer" parent="ScreenHandler"]
 layout_mode = 1
@@ -84,15 +75,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Desktop" type="Container" parent="ScreenHandler/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("2_yp4ya")
+metadata/_edit_lock_ = true
 
 [node name="Program" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
+program_res = SubResource("Resource_7pos1")
 
 [node name="Titlebar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
 layout_mode = 2
@@ -105,101 +99,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="Program" type="Control" parent="ScreenHandler/ProgramDock"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="ScreenHandler/ProgramDock/Program"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.11111111
-anchor_top = 0.10806452
-anchor_right = 0.82800007
-anchor_bottom = 0.79
-offset_right = 0.1439209
-offset_bottom = 85.19998
-pivot_offset = Vector2(413, 254)
-theme_override_styles/panel = SubResource("StyleBoxFlat_nd5ct")
-script = ExtResource("6_7pos1")
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="FlowDown" type="VBoxContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown"]
-custom_minimum_size = Vector2(0, 31)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
-
-[node name="TextureRect" type="TextureRect" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("7_5hobq")
-expand_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Godot Engine"
-fit_content = true
-autowrap_mode = 0
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_nvlvj")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_7pos1")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="TextureRect3" type="TextureRect" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_5hobq")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="PanelContainer" type="PanelContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_5hobq")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/PanelContainer"]
-layout_mode = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer"]
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(818, 465)
-size_2d_override = Vector2i(1152, 648)
-size_2d_override_stretch = true
-render_target_update_mode = 4
-
-[node name="BeachBreaker" parent="ScreenHandler/ProgramDock/Program/PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer/SubViewport" instance=ExtResource("9_s2aqv")]
-metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Shaders" type="CanvasLayer" parent="."]
 
