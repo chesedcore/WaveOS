@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://qq6b0gpqd0en"]
+
+[ext_resource type="Script" uid="uid://cjmvl8oovgidv" path="res://scripts/MiniGame Scripts/Beach Breaker/breaker_ball.gd" id="1_kmuv5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5yis"]
+radius = 16.0
+
+[node name="BreakerBall" type="Node2D"]
+script = ExtResource("1_kmuv5")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f5yis")
+
+[node name="RayDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 17)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-17, 0)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayUp" type="RayCast2D" parent="."]
+target_position = Vector2(0, -17)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayRight" type="RayCast2D" parent="."]
+target_position = Vector2(17, 0)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
