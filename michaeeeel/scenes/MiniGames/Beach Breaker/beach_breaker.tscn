@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://craqbkxhbmer8"]
+[gd_scene load_steps=7 format=3 uid="uid://craqbkxhbmer8"]
 
 [ext_resource type="Script" uid="uid://dfpskifmp48ab" path="res://scripts/MiniGame Scripts/Beach Breaker/beach_breaker.gd" id="1_grkye"]
-[ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_nihfr"]
 [ext_resource type="PackedScene" uid="uid://iy6s2au50nfs" path="res://scenes/MiniGames/Beach Breaker/breaker_player.tscn" id="2_0ttrq"]
 [ext_resource type="Texture2D" uid="uid://bkbo2bfp0al13" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_vxxka"]
 [ext_resource type="PackedScene" uid="uid://qq6b0gpqd0en" path="res://scenes/MiniGames/Beach Breaker/breaker_ball.tscn" id="5_wjhh4"]
@@ -22,30 +21,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_grkye")
-
-[node name="Octopus" type="Sprite2D" parent="."]
-position = Vector2(429, 109)
-texture = ExtResource("1_nihfr")
-
-[node name="Octopus2" type="Sprite2D" parent="."]
-position = Vector2(622, 144)
-texture = ExtResource("1_nihfr")
-
-[node name="Octopus3" type="Sprite2D" parent="."]
-position = Vector2(780, 236)
-texture = ExtResource("1_nihfr")
-
-[node name="Octopus4" type="Sprite2D" parent="."]
-position = Vector2(410, 230)
-texture = ExtResource("1_nihfr")
-
-[node name="Octopus5" type="Sprite2D" parent="."]
-position = Vector2(737, 50)
-texture = ExtResource("1_nihfr")
-
-[node name="Octopus6" type="Sprite2D" parent="."]
-position = Vector2(528, 53)
-texture = ExtResource("1_nihfr")
 
 [node name="BreakerPlayer" parent="." instance=ExtResource("2_0ttrq")]
 unique_name_in_owner = true

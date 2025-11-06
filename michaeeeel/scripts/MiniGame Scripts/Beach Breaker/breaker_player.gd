@@ -10,8 +10,8 @@ var direction := 0.0
 var collided_with_wall := false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		if event.button_mask == 1:
+	if event is InputEventKey:
+		if event.is_action_pressed("ui_accept"):
 			if paddle_col.disabled and cooldown_timer.time_left <= 0:
 				hit_ball()
 				print("HYEHYAHH")
