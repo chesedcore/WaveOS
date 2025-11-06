@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxu1giuebiy7r"]
+[gd_scene load_steps=3 format=3 uid="uid://bxu1giuebiy7r"]
 
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_ar5kf"]
+[ext_resource type="Script" uid="uid://5g2n6e72fu6q" path="res://scripts/ui/program_icon.gd" id="1_jbhb6"]
 
-[node name="Program" type="MarginContainer"]
+[node name="Program" type="MarginContainer" node_paths=PackedStringArray("icon_rect")]
 custom_minimum_size = Vector2(148, 0)
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+script = ExtResource("1_jbhb6")
+icon_rect = NodePath("VBoxContainer/Icon")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
