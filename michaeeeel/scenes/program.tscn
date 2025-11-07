@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bqv1ipckyv8ot"]
 
 [ext_resource type="Script" uid="uid://cu0p5jhxovsh3" path="res://scripts/centering_control.gd" id="1_h81p0"]
+[ext_resource type="Script" uid="uid://nyasnqvthdoo" path="res://scenes/program.gd" id="1_xnlas"]
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_xnlas"]
 [ext_resource type="Texture2D" uid="uid://b2y08spwydouf" path="res://assets/MiniGame Assets/WaveOS/window_icons.png" id="3_4iife"]
-[ext_resource type="PackedScene" uid="uid://craqbkxhbmer8" path="res://scenes/minigames/Beach Breaker/beach_breaker.tscn" id="4_72bay"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd5ct"]
 bg_color = Color(0.03529412, 0.47843137, 1, 1)
@@ -22,7 +22,7 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hobq"]
 
-[node name="Program" type="Control"]
+[node name="Program" type="Control" node_paths=PackedStringArray("subviewport")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,8 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 310)
 mouse_filter = 2
+script = ExtResource("1_xnlas")
+subviewport = NodePath("PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer/SubViewport")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -114,6 +116,3 @@ size = Vector2i(818, 491)
 size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 render_target_update_mode = 4
-
-[node name="BeachBreaker" parent="PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_72bay")]
-metadata/_edit_use_anchors_ = true
