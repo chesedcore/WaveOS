@@ -33,10 +33,10 @@ func _ready() -> void:
 	configure_original_sizes()
 	pop_out()
 
-
 func wire_up_signals() -> void:
 	exit_button.clicked.connect(Bus.request_close_from_res.emit.bind(program_res))
 	expand_shrink_button.clicked.connect(_on_expand_shrink_clicked)
+	window.contact.connect(Bus.request_focus.emit.bind(self))
 
 var tween: Tween
 func pop_out() -> void:

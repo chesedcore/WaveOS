@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhgygsbcvimio"]
 
-[ext_resource type="Texture2D" uid="uid://r5mrh46gsg7u" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_6vg64"]
+[ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_6vg64"]
 [ext_resource type="Script" uid="uid://ch18ej1ogpgnn" path="res://scripts/ui/taskbar_task.gd" id="1_ek4ep"]
 
 [node name="Task" type="PanelContainer" node_paths=PackedStringArray("icon")]

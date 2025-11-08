@@ -2,6 +2,8 @@ class_name ProgramContainerWindow extends Panel
 
 @export var drag_bar: DragBar
 
+signal contact
+
 var offset_vec: Vector2
 var is_dragging: bool = false
 
@@ -23,3 +25,7 @@ func _on_drag_started() -> void:
 
 func _on_drag_ended() -> void:
 	is_dragging = false
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed: contact.emit()

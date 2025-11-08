@@ -17,6 +17,7 @@ func _ready() -> void:
 func wire_up_signals() -> void:
 	Bus.request_open_from_icon.connect(_on_icon_open_request)
 	Bus.request_close_from_res.connect(_on_close_request)
+	Bus.request_focus.connect(_on_requested_focus)
 
 func _on_icon_open_request(program_icon: ProgramIcon) -> void:
 	
@@ -62,3 +63,6 @@ func _on_close_request(program_res: ProgramResource) -> void:
 	#destroy both nodes linked inside the registry
 	entry.destroy()
 	print("Program closed.")
+
+func _on_requested_focus(program: Program) -> void:
+	program.move_to_front()
