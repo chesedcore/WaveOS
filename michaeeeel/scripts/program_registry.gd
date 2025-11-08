@@ -13,5 +13,5 @@ static func from(program: Program, task: Task) -> RegistryEntry:
 ##destroy both nodes linked in this entry.
 func destroy() -> void:
 	assert(linked_program and linked_task, "Either the program or the task is invalid...")
-	linked_program.queue_free()
+	linked_program.shrink_in()
 	linked_task.queue_free()

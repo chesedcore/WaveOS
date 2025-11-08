@@ -17,6 +17,20 @@ func set_program_attr() -> void:
 
 func _ready() -> void:
 	wire_up_signals()
+	scale = Vector2(2, 0)
+	pop_out()
 
 func wire_up_signals() -> void:
 	exit_button.clicked.connect(Bus.request_close_from_res.emit.bind(program_res))
+
+var tween: Tween
+func pop_out() -> void:
+	if tween: tween.kill()
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self, "scale", Vector2.ONE, 0.4)
+
+func shrink_in() -> void:
+	if tween: tween.kill()
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self, "scale", Vector2(2, 0), 0.4)
+	tween.tween_callback(queue_free)
