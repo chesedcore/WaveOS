@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://h4l48cwtgiwe"]
 
-[ext_resource type="Texture2D" uid="uid://c0p2os64tctdm" path="res://assets/bliss.jpg" id="1_jqvav"]
+[ext_resource type="Texture2D" uid="uid://ddacovx0gpo4n" path="res://assets/bliss.jpg" id="1_jqvav"]
 [ext_resource type="Script" uid="uid://dcevx0ghdvstp" path="res://scripts/screen_handler.gd" id="2_nd5ct"]
 [ext_resource type="Script" uid="uid://dbux11tjp7vmi" path="res://scripts/ui/better_grid_container.gd" id="2_yp4ya"]
 [ext_resource type="Shader" uid="uid://2vk0mfq3l1sa" path="res://shadercode/crtshader.gdshader" id="3_fxvci"]
 [ext_resource type="PackedScene" uid="uid://bxu1giuebiy7r" path="res://scenes/program_icon.tscn" id="3_yp4ya"]
 [ext_resource type="PackedScene" uid="uid://dqqqaoq4a3qxj" path="res://scenes/taskbar.tscn" id="4_72ne2"]
-[ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
+[ext_resource type="Texture2D" uid="uid://r5mrh46gsg7u" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
 [ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
 
 [sub_resource type="Resource" id="Resource_7pos1"]
@@ -22,7 +22,7 @@ resource_local_to_scene = true
 shader = ExtResource("3_fxvci")
 shader_parameter/gaydar = false
 shader_parameter/has_tint = true
-shader_parameter/tint = Color(1.1480001, 1.1480001, 1.1480001, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/quantize = false
 shader_parameter/dithering = false
 shader_parameter/scanline = false

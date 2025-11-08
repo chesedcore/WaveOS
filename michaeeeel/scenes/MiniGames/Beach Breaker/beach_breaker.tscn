@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://craqbkxhbmer8"]
 
 [ext_resource type="Script" uid="uid://dfpskifmp48ab" path="res://scripts/MiniGame Scripts/Beach Breaker/beach_breaker.gd" id="1_grkye"]
-[ext_resource type="PackedScene" uid="uid://iy6s2au50nfs" path="res://scenes/minigames/Beach Breaker/breaker_player.tscn" id="2_0ttrq"]
-[ext_resource type="Texture2D" uid="uid://bkbo2bfp0al13" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_vxxka"]
-[ext_resource type="PackedScene" uid="uid://cnacntis1qwrx" path="res://scenes/minigames/Beach Breaker/octos.tscn" id="5_7rjm4"]
-[ext_resource type="PackedScene" uid="uid://qq6b0gpqd0en" path="res://scenes/minigames/Beach Breaker/breaker_ball.tscn" id="5_wjhh4"]
+[ext_resource type="PackedScene" uid="uid://iy6s2au50nfs" path="res://scenes/MiniGames/Beach Breaker/breaker_player.tscn" id="2_0ttrq"]
+[ext_resource type="Texture2D" uid="uid://dnnq51qdsvavq" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_vxxka"]
+[ext_resource type="PackedScene" uid="uid://cnacntis1qwrx" path="res://scenes/MiniGames/Beach Breaker/octos.tscn" id="5_7rjm4"]
+[ext_resource type="PackedScene" uid="uid://qq6b0gpqd0en" path="res://scenes/MiniGames/Beach Breaker/breaker_ball.tscn" id="5_wjhh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grkye"]
 size = Vector2(35, 652)
