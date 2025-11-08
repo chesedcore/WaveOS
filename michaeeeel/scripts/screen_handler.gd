@@ -33,6 +33,7 @@ func _on_icon_open_request(program_icon: ProgramIcon) -> void:
 	var scene: Minigame = load(key_res.program).instantiate()
 	program.wrap.call_deferred(scene)
 	await scene.ready
+	program.set_program_attr()
 	print("Request served, opened path at ", key_res.program)
 	
 	#add the program's task to the taskbar

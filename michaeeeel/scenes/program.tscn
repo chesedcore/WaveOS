@@ -23,7 +23,7 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hobq"]
 
-[node name="Program" type="Control" node_paths=PackedStringArray("subviewport", "exit_button")]
+[node name="Program" type="Control" node_paths=PackedStringArray("subviewport", "exit_button", "program_name", "game_icon")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +35,8 @@ mouse_filter = 2
 script = ExtResource("1_xnlas")
 subviewport = NodePath("PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer/SubViewport")
 exit_button = NodePath("PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer/Exit")
+program_name = NodePath("PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2/RichTextLabel")
+game_icon = NodePath("PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2/GameIcon")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -69,7 +71,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2"]
+[node name="GameIcon" type="TextureRect" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture = ExtResource("2_xnlas")
 expand_mode = 2
