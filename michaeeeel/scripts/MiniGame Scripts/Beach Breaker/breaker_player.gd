@@ -5,7 +5,7 @@ extends Area2D
 @onready var paddle_col: CollisionShape2D = $PaddleHit/CollisionShape2D
 @onready var cooldown_timer: Timer = $CooldownTimer
 
-var speed := 350
+var speed := 400
 var direction := 0.0
 var collided_with_wall := false
 
