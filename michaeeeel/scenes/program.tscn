@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqv1ipckyv8ot"]
+[gd_scene load_steps=13 format=3 uid="uid://bqv1ipckyv8ot"]
 
-[ext_resource type="Script" uid="uid://cu0p5jhxovsh3" path="res://scripts/centering_control.gd" id="1_h81p0"]
 [ext_resource type="Script" uid="uid://nyasnqvthdoo" path="res://scripts/program.gd" id="1_xnlas"]
+[ext_resource type="Script" uid="uid://dh253lkmxjxxx" path="res://scripts/ui/program_container_window.gd" id="2_4iife"]
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_xnlas"]
-[ext_resource type="Texture2D" uid="uid://bktbt2j0jreko" path="res://assets/MiniGame Assets/WaveOS/window_icons.png" id="3_4iife"]
-[ext_resource type="Script" uid="uid://2ok1um7dqnfy" path="res://scripts/ui/frame_button.gd" id="5_xnlas"]
+[ext_resource type="Texture2D" uid="uid://b2y08spwydouf" path="res://assets/MiniGame Assets/WaveOS/window_icons.png" id="3_4iife"]
+[ext_resource type="Script" uid="uid://dgxst45r4q2yx" path="res://scripts/ui/drag_bar.gd" id="3_72bay"]
+[ext_resource type="Script" uid="uid://2ok1um7dqnfy" path="res://scripts/ui/frame_button.gd" id="6_4iife"]
+[ext_resource type="Script" uid="uid://dk1v7vt40wsnn" path="res://scripts/ui/expand_shrink_button.gd" id="7_72bay"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd5ct"]
 bg_color = Color(0.03529412, 0.47843137, 1, 1)
@@ -23,7 +25,7 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hobq"]
 
-[node name="Program" type="Control" node_paths=PackedStringArray("subviewport", "exit_button", "program_name", "game_icon")]
+[node name="Program" type="Control" node_paths=PackedStringArray("subviewport", "expand_shrink_button", "exit_button", "program_name", "game_icon", "window")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,88 +35,106 @@ grow_vertical = 2
 pivot_offset = Vector2(576, 310)
 mouse_filter = 2
 script = ExtResource("1_xnlas")
-subviewport = NodePath("PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer/SubViewport")
-exit_button = NodePath("PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer/Exit")
-program_name = NodePath("PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2/RichTextLabel")
-game_icon = NodePath("PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2/GameIcon")
+subviewport = NodePath("Window/MarginContainer/FlowDown/PanelContainer/SubViewportContainer/SubViewport")
+expand_shrink_button = NodePath("Window/MarginContainer/FlowDown/FlowRight/HBoxContainer/ExpandShrink")
+exit_button = NodePath("Window/MarginContainer/FlowDown/FlowRight/HBoxContainer/Exit")
+program_name = NodePath("Window/MarginContainer/FlowDown/FlowRight/DragBar/RichTextLabel")
+game_icon = NodePath("Window/MarginContainer/FlowDown/FlowRight/DragBar/GameIcon")
+window = NodePath("Window")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Window" type="Panel" parent="." node_paths=PackedStringArray("drag_bar")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.11111111
-anchor_top = 0.10806452
-anchor_right = 0.82800007
-anchor_bottom = 0.79
-offset_right = 0.1439209
-offset_bottom = 85.19998
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -413.0
+offset_top = -263.54712
+offset_right = 413.0
+offset_bottom = 263.54712
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(413, 254)
 theme_override_styles/panel = SubResource("StyleBoxFlat_nd5ct")
-script = ExtResource("1_h81p0")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("2_4iife")
+drag_bar = NodePath("MarginContainer/FlowDown/FlowRight/DragBar")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="FlowDown" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="FlowDown" type="VBoxContainer" parent="Window/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/FlowDown"]
+[node name="FlowRight" type="HBoxContainer" parent="Window/MarginContainer/FlowDown"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer"]
+[node name="DragBar" type="HBoxContainer" parent="Window/MarginContainer/FlowDown/FlowRight"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
+script = ExtResource("3_72bay")
 
-[node name="GameIcon" type="TextureRect" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2"]
+[node name="GameIcon" type="TextureRect" parent="Window/MarginContainer/FlowDown/FlowRight/DragBar"]
 layout_mode = 2
 texture = ExtResource("2_xnlas")
 expand_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Window/MarginContainer/FlowDown/FlowRight/DragBar"]
 layout_mode = 2
+mouse_filter = 1
 text = "Godot Engine"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/MarginContainer/FlowDown/FlowRight"]
 layout_mode = 2
 
-[node name="Minimise" type="TextureRect" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer"]
+[node name="Minimise" type="TextureRect" parent="Window/MarginContainer/FlowDown/FlowRight/HBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_nvlvj")
 expand_mode = 3
 stretch_mode = 4
+script = ExtResource("6_4iife")
+metadata/_custom_type_script = "uid://2ok1um7dqnfy"
 
-[node name="ExpandShrink" type="TextureRect" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer"]
+[node name="ExpandShrink" type="TextureRect" parent="Window/MarginContainer/FlowDown/FlowRight/HBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_7pos1")
 expand_mode = 3
 stretch_mode = 4
+script = ExtResource("7_72bay")
+metadata/_custom_type_script = "uid://2ok1um7dqnfy"
 
-[node name="Exit" type="TextureRect" parent="PanelContainer/MarginContainer/FlowDown/HBoxContainer/HBoxContainer"]
+[node name="Exit" type="TextureRect" parent="Window/MarginContainer/FlowDown/FlowRight/HBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_5hobq")
 expand_mode = 3
 stretch_mode = 4
-script = ExtResource("5_xnlas")
+script = ExtResource("6_4iife")
+metadata/_custom_type_script = "uid://2ok1um7dqnfy"
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/FlowDown"]
+[node name="PanelContainer" type="PanelContainer" parent="Window/MarginContainer/FlowDown"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_5hobq")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/MarginContainer/FlowDown/PanelContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Window/MarginContainer/FlowDown/PanelContainer"]
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer/MarginContainer/FlowDown/PanelContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Window/MarginContainer/FlowDown/PanelContainer/SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(818, 491)
