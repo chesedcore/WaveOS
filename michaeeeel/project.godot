@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="WaveOS"
+run/main_scene="uid://h4l48cwtgiwe"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/image="uid://bsw68k17jemb4"
 config/icon="res://icon.svg"
