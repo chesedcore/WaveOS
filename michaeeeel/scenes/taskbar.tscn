@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqqqaoq4a3qxj"]
+[gd_scene load_steps=6 format=3 uid="uid://dqqqaoq4a3qxj"]
 
 [ext_resource type="Script" uid="uid://bdojx1h2v7ses" path="res://scripts/ui/taskbar.gd" id="1_0sar1"]
+[ext_resource type="Script" uid="uid://ct084fo56viac" path="res://scripts/ui/time.gd" id="2_hsxng"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxvci"]
 resource_local_to_scene = true
@@ -61,3 +62,17 @@ theme_override_constants/margin_bottom = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Tray/MarginContainer"]
 layout_mode = 2
+
+[node name="Time" type="RichTextLabel" parent="Tray/MarginContainer/HBoxContainer" node_paths=PackedStringArray("timer")]
+layout_mode = 2
+text = "HH:MM:SS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_hsxng")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Tray/MarginContainer/HBoxContainer/Time"]
+autostart = true
+ignore_time_scale = true
