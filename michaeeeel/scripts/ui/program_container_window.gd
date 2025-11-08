@@ -11,6 +11,7 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	wire_up_signals()
+	await get_tree().process_frame
 
 func wire_up_signals() -> void:
 	drag_bar.drag_started.connect(_on_drag_started)
