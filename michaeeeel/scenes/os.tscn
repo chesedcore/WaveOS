@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://h4l48cwtgiwe"]
+[gd_scene load_steps=15 format=3 uid="uid://h4l48cwtgiwe"]
 
 [ext_resource type="Texture2D" uid="uid://c0p2os64tctdm" path="res://assets/bliss.jpg" id="1_jqvav"]
 [ext_resource type="Script" uid="uid://dcevx0ghdvstp" path="res://scripts/screen_handler.gd" id="2_nd5ct"]
@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
 [ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
 [ext_resource type="Texture2D" uid="uid://bjewqb88tv8as" path="res://assets/terminal.png" id="7_5hobq"]
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="8_s2aqv"]
 
-[sub_resource type="Resource" id="Resource_s2aqv"]
+[sub_resource type="Resource" id="Resource_5hobq"]
 resource_local_to_scene = true
 script = ExtResource("5_nvlvj")
 name = "Terminal"
@@ -18,12 +19,20 @@ icon = ExtResource("7_5hobq")
 program = "uid://bcrdvyyqj26e1"
 metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
-[sub_resource type="Resource" id="Resource_5hobq"]
+[sub_resource type="Resource" id="Resource_s2aqv"]
 resource_local_to_scene = true
 script = ExtResource("5_nvlvj")
 name = "Beach Breaker"
 icon = ExtResource("5_7pos1")
 program = "uid://craqbkxhbmer8"
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+
+[sub_resource type="Resource" id="Resource_y55b8"]
+resource_local_to_scene = true
+script = ExtResource("5_nvlvj")
+name = "Ballscord"
+icon = ExtResource("8_s2aqv")
+program = "uid://jyw2uyrb313"
 metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp4ya"]
@@ -95,11 +104,15 @@ metadata/_edit_lock_ = true
 
 [node name="Terminal" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
-program_res = SubResource("Resource_s2aqv")
+program_res = SubResource("Resource_5hobq")
 
 [node name="BeachBreaker" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
-program_res = SubResource("Resource_5hobq")
+program_res = SubResource("Resource_s2aqv")
+
+[node name="Ballscord" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
+layout_mode = 2
+program_res = SubResource("Resource_y55b8")
 
 [node name="Taskbar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
 layout_mode = 2
