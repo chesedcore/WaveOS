@@ -5,6 +5,8 @@ class_name ScreenHandler extends Control
 @export var program_dock: Control
 @export var bottom_bar: BottomBar
 
+@export var program_count_limit: int = 9
+
 var registry: Dictionary[ProgramResource, RegistryEntry] = {
 	
 }
@@ -17,6 +19,10 @@ func wire_up_signals() -> void:
 	Bus.request_close_from_res.connect(_on_close_request)
 
 func _on_icon_open_request(program_icon: ProgramIcon) -> void:
+	
+	if registry.size() >= program_count_limit:
+		print("Too many programs, request denied.")
+		return
 	
 	#get a duped res, a dupe is important here to not link the same programres
 	#with multiple different programs
