@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://pvm5vhcsjy24"]
+
+[ext_resource type="Script" uid="uid://1enlmv47b1ol" path="res://scripts/MiniGame Scripts/Surfs Up!/wavegual.gd" id="1_4pnua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr6s5"]
+size = Vector2(42, 40)
+
+[node name="Wavegual" type="Area2D"]
+script = ExtResource("1_4pnua")
+speed = 200
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -24.0
+offset_top = -16.0
+offset_right = -15.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -16.0
+offset_right = 6.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = -4.0
+offset_bottom = -11.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = -38.0
+offset_right = -14.0
+offset_bottom = 11.0
+color = Color(0.8664483, 0.48132634, 5.7756904e-07, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+offset_left = 13.0
+offset_right = 37.0
+offset_bottom = 11.0
+rotation = -0.42427313
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hr6s5")

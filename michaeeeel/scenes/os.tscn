@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqqqaoq4a3qxj" path="res://scenes/taskbar.tscn" id="4_72ne2"]
 [ext_resource type="Texture2D" uid="uid://r5mrh46gsg7u" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
 [ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
-[ext_resource type="Texture2D" uid="uid://bjewqb88tv8as" path="res://assets/terminal.png" id="7_5hobq"]
+[ext_resource type="Texture2D" uid="uid://iwiq80ahwwln" path="res://assets/terminal.png" id="7_5hobq"]
 
 [sub_resource type="Resource" id="Resource_5hobq"]
 resource_local_to_scene = true

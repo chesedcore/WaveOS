@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://x54usaj2rkse"]
+[gd_scene load_steps=6 format=3 uid="uid://x54usaj2rkse"]
 
 [ext_resource type="PackedScene" uid="uid://bxc7q70kentx4" path="res://scenes/MiniGames/Surfs Up!/surfer_dude.tscn" id="1_4tjdd"]
 [ext_resource type="Texture2D" uid="uid://ddacovx0gpo4n" path="res://assets/bliss.jpg" id="2_hv0m1"]
+[ext_resource type="PackedScene" uid="uid://pvm5vhcsjy24" path="res://scenes/MiniGames/Surfs Up!/wavegual.tscn" id="3_hv0m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tjdd"]
 size = Vector2(1152, 20)
+
+[sub_resource type="Curve2D" id="Curve2D_4tjdd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1280, -48, 0, 0, 0, 0, 1280, 80, 0, 0, 0, 0, 1280, 208, 0, 0, 0, 0, 1280, 328, 0, 0, 0, 0, 1280, 464)
+}
+point_count = 5
 
 [node name="SurfsUp" type="Control"]
 layout_mode = 3
@@ -40,19 +47,17 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -288.0
-offset_bottom = 288.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Parallax2D" type="Parallax2D" parent="CanvasLayer/Control"]
+scale = Vector2(0.99999994, 0.99999994)
+scroll_offset = Vector2(-7.9999995, 319.99997)
+repeat_size = Vector2(1152, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 3
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/Parallax2D"]
+scale = Vector2(1.1249999, 1)
 texture = ExtResource("2_hv0m1")
-expand_mode = 1
 
 [node name="UpWall" type="Area2D" parent="."]
 position = Vector2(576, 40)
@@ -69,3 +74,16 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownWall"]
 shape = SubResource("RectangleShape2D_4tjdd")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 112)
+curve = SubResource("Curve2D_4tjdd")
+
+[node name="Wavegual" parent="." instance=ExtResource("3_hv0m1")]
+position = Vector2(1136, 152)
+
+[node name="Wavegual2" parent="." instance=ExtResource("3_hv0m1")]
+position = Vector2(1376, 312)
+
+[node name="Wavegual3" parent="." instance=ExtResource("3_hv0m1")]
+position = Vector2(1112, 536)
