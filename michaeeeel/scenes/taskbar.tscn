@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqqqaoq4a3qxj"]
+[gd_scene load_steps=5 format=3 uid="uid://dqqqaoq4a3qxj"]
+
+[ext_resource type="Script" uid="uid://bdojx1h2v7ses" path="res://scripts/ui/taskbar.gd" id="1_0sar1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxvci"]
 resource_local_to_scene = true
@@ -12,8 +14,11 @@ bg_color = Color(0.44313726, 0.49803922, 1, 1)
 resource_local_to_scene = true
 bg_color = Color(0.6403895, 0.6984645, 1, 1)
 
-[node name="Titlebar" type="HBoxContainer"]
+[node name="Bar" type="HBoxContainer" node_paths=PackedStringArray("taskbar_container")]
 custom_minimum_size = Vector2(0, 30)
+size_flags_horizontal = 3
+script = ExtResource("1_0sar1")
+taskbar_container = NodePath("Taskbar/MarginContainer/TaskbarContainer")
 
 [node name="Start" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -31,6 +36,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.8
 theme_override_styles/panel = SubResource("StyleBoxFlat_rxoc4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Taskbar"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="TaskbarContainer" type="HBoxContainer" parent="Taskbar/MarginContainer"]
+layout_mode = 2
 
 [node name="Tray" type="PanelContainer" parent="."]
 layout_mode = 2

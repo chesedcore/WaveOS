@@ -5,13 +5,13 @@
 [ext_resource type="Script" uid="uid://dbux11tjp7vmi" path="res://scripts/ui/better_grid_container.gd" id="2_yp4ya"]
 [ext_resource type="Shader" uid="uid://2vk0mfq3l1sa" path="res://shadercode/crtshader.gdshader" id="3_fxvci"]
 [ext_resource type="PackedScene" uid="uid://bxu1giuebiy7r" path="res://scenes/program_icon.tscn" id="3_yp4ya"]
-[ext_resource type="PackedScene" uid="uid://dqqqaoq4a3qxj" path="res://scenes/titlebar.tscn" id="4_72ne2"]
+[ext_resource type="PackedScene" uid="uid://dqqqaoq4a3qxj" path="res://scenes/taskbar.tscn" id="4_72ne2"]
 [ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
 [ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxoc4"]
 
-[sub_resource type="Resource" id="Resource_5hobq"]
+[sub_resource type="Resource" id="Resource_7pos1"]
 resource_local_to_scene = true
 script = ExtResource("5_nvlvj")
 name = "Beach Breaker"
@@ -57,7 +57,7 @@ mouse_filter = 2
 texture = ExtResource("1_jqvav")
 metadata/_edit_lock_ = true
 
-[node name="ScreenHandler" type="Control" parent="." node_paths=PackedStringArray("program_dock")]
+[node name="ScreenHandler" type="Control" parent="." node_paths=PackedStringArray("program_dock", "bottom_bar")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,6 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_nd5ct")
 program_dock = NodePath("ProgramDock")
+bottom_bar = NodePath("Screen/Taskbar")
 metadata/_edit_lock_ = true
 
 [node name="Screen" type="VBoxContainer" parent="ScreenHandler"]
@@ -85,11 +86,11 @@ mouse_filter = 2
 script = ExtResource("2_yp4ya")
 metadata/_edit_lock_ = true
 
-[node name="Program" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
+[node name="ProgramIcon" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
-program_res = SubResource("Resource_5hobq")
+program_res = SubResource("Resource_7pos1")
 
-[node name="Titlebar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
+[node name="Taskbar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
 layout_mode = 2
 
 [node name="ProgramDock" type="Control" parent="ScreenHandler"]
