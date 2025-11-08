@@ -77,12 +77,3 @@ shape = SubResource("RectangleShape2D_4tjdd")
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(0, 112)
 curve = SubResource("Curve2D_4tjdd")
-
-[node name="Wavegual" parent="." instance=ExtResource("3_hv0m1")]
-position = Vector2(1136, 152)
-
-[node name="Wavegual2" parent="." instance=ExtResource("3_hv0m1")]
-position = Vector2(1376, 312)
-
-[node name="Wavegual3" parent="." instance=ExtResource("3_hv0m1")]
-position = Vector2(1112, 536)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnacntis1qwrx"]
 
 [ext_resource type="Script" uid="uid://c7iaoisop64gw" path="res://scripts/MiniGame Scripts/Beach Breaker/octos.gd" id="1_772ve"]
-[ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_wkrie"]
+[ext_resource type="Texture2D" uid="uid://r5mrh46gsg7u" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_wkrie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkrie"]
 size = Vector2(61, 52)
