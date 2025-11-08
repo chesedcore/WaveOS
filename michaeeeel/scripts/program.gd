@@ -9,6 +9,7 @@ class_name Program extends Control
 
 var program_res: ProgramResource
 
+var original_pos: Vector2
 var window_original_size: Vector2
 var window_max_size: Vector2
 
@@ -23,6 +24,7 @@ func set_program_attr() -> void:
 func configure_original_sizes() -> void:
 	window_original_size = window.size
 	window_max_size = self.size
+	original_pos = window.position
 
 func _ready() -> void:
 	scale = Vector2(2, 0)
@@ -51,23 +53,28 @@ func shrink_in() -> void:
 var size_tween: Tween
 func _on_expand_shrink_clicked() -> void:
 	if size_tween: tween.kill()
-	size_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	
 	if expand_shrink_button.mode == ExpandShrinkButton.MODE.WINDOWED:
+		if not window.position.is_equal_approx(original_pos):
+			var recenter_tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+			recenter_tween.tween_property(window, "position", original_pos, 0.3)
+			await recenter_tween.finished
+		size_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 		_tween_window_to_size(size_tween, window_max_size)
 		size_tween.tween_callback(
 			func() -> void: expand_shrink_button.mode = ExpandShrinkButton.MODE.MAX_STRETCH
 		)
 	else:
+		size_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 		_tween_window_to_size(size_tween, window_original_size)
 		size_tween.tween_callback(
 			func() -> void: expand_shrink_button.mode = ExpandShrinkButton.MODE.WINDOWED
 		)
 
 func _tween_window_to_size(t: Tween, target_size: Vector2, duration: float = 0.4) -> void:
-	var old_size = window.size
-	var center = window.position + old_size * 0.5
-	var target_pos = center - target_size * 0.5
+	var old_size := window.size
+	var center := window.position + old_size * 0.5
+	var target_pos := center - target_size * 0.5
 
 	t.tween_property(window, "size", target_size, duration)
 	t.parallel().tween_property(window, "position", target_pos, duration)

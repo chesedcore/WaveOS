@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcrdvyyqj26e1"]
+
+[ext_resource type="Script" uid="uid://duo2pmp3cy7k0" path="res://scripts/utils/terminal.gd" id="1_cdw11"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_fi5x5"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_wnd5m"]
+
+[sub_resource type="Resource" id="Resource_laeof"]
+script = ExtResource("3_wnd5m")
+
+[sub_resource type="Resource" id="Resource_38yaw"]
+script = ExtResource("3_wnd5m")
+
+[node name="Terminal" type="Control" node_paths=PackedStringArray("buffer", "output_container", "scroll")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_cdw11")
+buffer = NodePath("MarginContainer/Container/LineEdit")
+output_container = NodePath("MarginContainer/Container/SmoothScroll/FlowDown")
+scroll = NodePath("MarginContainer/Container/SmoothScroll")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="SmoothScroll" type="ScrollContainer" parent="MarginContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_fi5x5")
+wheel_scroll_damper = SubResource("Resource_laeof")
+dragging_scroll_damper = SubResource("Resource_38yaw")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="FlowDown" type="VBoxContainer" parent="MarginContainer/Container/SmoothScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/Container"]
+layout_mode = 2
+keep_editing_on_text_submit = true
