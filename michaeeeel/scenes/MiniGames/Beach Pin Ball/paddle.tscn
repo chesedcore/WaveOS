@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://u61pj616flmd"]
+
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_b5f45"]
+[ext_resource type="Script" uid="uid://clump8nsjd748" path="res://scripts/MiniGame Scripts/BeachPinball/paddle.gd" id="1_u8mu7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u8mu7"]
+height = 104.0
+
+[node name="paddlebody" type="AnimatableBody2D"]
+script = ExtResource("1_u8mu7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.76247364, 0.049678907, 0.14900038, 1)
+position = Vector2(53.384605, 22.016842)
+rotation = 1.9442246
+scale = Vector2(0.16406247, 0.78125)
+texture = ExtResource("1_b5f45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(53.884617, 22.01685)
+rotation = 1.9442246
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_u8mu7")

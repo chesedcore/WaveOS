@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyyqg4j0dxfgv"]
+
+[ext_resource type="Script" uid="uid://ced6obpoe0hfa" path="res://scripts/MiniGame Scripts/BeachPinball/paddles.gd" id="1_n2pxf"]
+[ext_resource type="PackedScene" uid="uid://u61pj616flmd" path="res://scenes/MiniGames/Beach Pin Ball/paddle.tscn" id="2_wn2e4"]
+
+[node name="paddles" type="Node2D"]
+script = ExtResource("1_n2pxf")
+
+[node name="paddleleft" parent="." instance=ExtResource("2_wn2e4")]
+position = Vector2(-143, -12.999998)
+
+[node name="paddleright" parent="." instance=ExtResource("2_wn2e4")]
+position = Vector2(146, -9.000001)
+rotation = -0.0017357481
+rest_angle = 140.0
+flip_angle = 230.0
