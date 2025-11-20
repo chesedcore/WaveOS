@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5qmmupokoihw"]
+
+[ext_resource type="Script" uid="uid://xtwp6w5fclvi" path="res://scripts/MiniGame Scripts/TrashSweeper/cell.gd" id="1_pu1cm"]
+[ext_resource type="Texture2D" uid="uid://yd05n6wuwd5b" path="res://assets/MiniGame Assets/TrashSweeper/goalmarker.png" id="2_hssw3"]
+
+[node name="Cell" type="ColorRect"]
+custom_minimum_size = Vector2(20, 20)
+mouse_filter = 2
+color = Color(0.93333334, 0.7137255, 0.27450982, 1)
+script = ExtResource("1_pu1cm")
+
+[node name="icon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 2.9999998
+offset_right = 166.65001
+offset_bottom = 127.98726
+scale = Vector2(0.120011985, 0.12001222)
+mouse_filter = 2
+texture = ExtResource("2_hssw3")
+expand_mode = 1
+
+[node name="trashcounter" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.1847974, 0.19316778, 0.9999998, 1)
+theme_override_font_sizes/normal_font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="press" type="Button" parent="."]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+flat = true
+
+[connection signal="gui_input" from="press" to="." method="_on_press_gui_input"]

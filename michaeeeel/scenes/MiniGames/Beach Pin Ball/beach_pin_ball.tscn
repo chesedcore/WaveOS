@@ -1,0 +1,325 @@
+[gd_scene load_steps=14 format=3 uid="uid://cjr6ik84gn0x5"]
+
+[ext_resource type="Script" uid="uid://cj056y3x4mkve" path="res://scripts/MiniGame Scripts/BeachPinball/beach_pin_ball.gd" id="1_d7w0m"]
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_2wbnv"]
+[ext_resource type="Texture2D" uid="uid://dnnq51qdsvavq" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_dtwr6"]
+[ext_resource type="PackedScene" uid="uid://cx6y1oxetgyot" path="res://scenes/MiniGames/Beach Pin Ball/launchpad.tscn" id="4_0gdyc"]
+[ext_resource type="PackedScene" uid="uid://dyyqg4j0dxfgv" path="res://scenes/MiniGames/Beach Pin Ball/paddles.tscn" id="4_6es2q"]
+[ext_resource type="Script" uid="uid://c045jp23uw0ms" path="res://scripts/MiniGame Scripts/BeachPinball/ballhandler.gd" id="5_44u67"]
+[ext_resource type="PackedScene" uid="uid://52grpydap2jv" path="res://scenes/MiniGames/Beach Pin Ball/peg.tscn" id="6_0gdyc"]
+[ext_resource type="PackedScene" uid="uid://lo0ecvn40vtv" path="res://scenes/MiniGames/Beach Pin Ball/bumper.tscn" id="7_7nfcw"]
+[ext_resource type="PackedScene" uid="uid://dnrg4epwg0k4b" path="res://scenes/MiniGames/Beach Pin Ball/ball.tscn" id="8_7xpof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtwr6"]
+size = Vector2(125.30121, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nfcw"]
+size = Vector2(18.523079, 19.35205)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xpof"]
+size = Vector2(2.0608377, 15.94397)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gdyc"]
+size = Vector2(3.3170853, 20)
+
+[node name="BeachPinBall" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d7w0m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(8.085966e-06, 0.634652, 0.8419273, 1)
+
+[node name="TheBeach" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(375, 327)
+scale = Vector2(1.1234568, 1)
+texture = ExtResource("2_dtwr6")
+
+[node name="Sidebar" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -407.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="toppanel" type="MarginContainer" parent="Sidebar"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar/toppanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Sidebar/toppanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 48
+
+[node name="mascot" type="TextureRect" parent="Sidebar/toppanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_2wbnv")
+
+[node name="Label" type="Label" parent="Sidebar/toppanel/VBoxContainer/MarginContainer/mascot"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 40.0
+offset_right = 261.0
+offset_bottom = 84.0
+text = "MASCOT
+"
+
+[node name="BallCount" type="RichTextLabel" parent="Sidebar/toppanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "BALLS LEFT : 4"
+
+[node name="middlepanel" type="MarginContainer" parent="Sidebar"]
+layout_mode = 2
+
+[node name="Score" type="RichTextLabel" parent="Sidebar/middlepanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Score: 0"
+
+[node name="bottompanel" type="MarginContainer" parent="Sidebar"]
+layout_mode = 2
+
+[node name="Tutorial" type="RichTextLabel" parent="Sidebar/bottompanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "HOLD SPACE TO LAUNCH
+MOUSE BUTTON TO FLIP PADDLES"
+
+[node name="walls" type="Node" parent="."]
+
+[node name="wall" type="StaticBody2D" parent="walls"]
+position = Vector2(340, 0)
+scale = Vector2(6.64, 0.20000029)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall2" type="StaticBody2D" parent="walls"]
+position = Vector2(734, 387.00006)
+rotation = 1.5707964
+scale = Vector2(6.64, 0.20000029)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall2"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall2"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall3" type="StaticBody2D" parent="walls"]
+position = Vector2(2, 387.00006)
+rotation = 1.5707964
+scale = Vector2(6.64, 0.20000029)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall3"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall3"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall4" type="StaticBody2D" parent="walls"]
+position = Vector2(685, 231)
+rotation = 1.5707964
+scale = Vector2(1.7813058, 0.13815758)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall4"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall4"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall9" type="StaticBody2D" parent="walls"]
+position = Vector2(685, 508.99997)
+rotation = 1.5707964
+scale = Vector2(1.7813058, 0.13815758)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall9"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall9"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall5" type="StaticBody2D" parent="walls"]
+position = Vector2(600, 263)
+rotation = 1.5707964
+scale = Vector2(1.9599986, 0.099047765)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall5"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall5"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall10" type="StaticBody2D" parent="walls"]
+position = Vector2(600, 554)
+rotation = 1.5707964
+scale = Vector2(2.08, 0.099047765)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall10"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall10"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall6" type="StaticBody2D" parent="walls"]
+position = Vector2(60.99994, 341)
+rotation = 1.5707964
+scale = Vector2(3.4399998, 0.16380976)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall6"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall6"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall7" type="StaticBody2D" parent="walls"]
+position = Vector2(121, 484)
+rotation = 3.6624937
+scale = Vector2(1.1938896, 0.1620178)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall7"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall7"]
+texture = ExtResource("2_2wbnv")
+
+[node name="wall8" type="StaticBody2D" parent="walls"]
+position = Vector2(531, 484.00006)
+rotation = 5.6543202
+scale = Vector2(1.1938896, 0.1620178)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall8"]
+position = Vector2(0.90361404, -2)
+shape = SubResource("RectangleShape2D_dtwr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/wall8"]
+texture = ExtResource("2_2wbnv")
+
+[node name="cornerwall" type="StaticBody2D" parent="walls"]
+position = Vector2(679.00006, 17)
+scale = Vector2(2.6304922, 2.708925)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/cornerwall"]
+position = Vector2(-44.381424, -5.105802)
+polygon = PackedVector2Array(61.86862, 41.65166, 58.067047, 36.11441, 55.025787, 30.946308, 51.984528, 27.623959, 47.04251, 23.932457, 41.34015, 19.871805, 35.637787, 18.026054, 29.175125, 15.811155, 22.712448, 13.965404, 14.7291565, 11.381353, 8.266495, 9.535603, -1.9977417, 6.9515524, -12.642151, 4.7366514, -20.245285, 3.9983513, -25.187317, 3.6292012, -22.52623, 1.4143007, 59.967834, 2.152601)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="walls/cornerwall"]
+position = Vector2(-26.611013, 29.532011)
+rotation = 3.1310663
+polygon = PackedVector2Array(84.502396, 14.319126, 28.967588, 17.057058, 16.442518, 15.079359, 6.58618, 12.391411, -3.623079, 7.1155534, -10.050416, 3.7253594, -16.473864, -0.033963766, -22.908983, -2.6858993, -28.19591, -6.0640883, -33.859116, -9.815409, -34.526108, -18.682524, -16.306992, -3.8633614, -1.931778, 2.9330292, 9.433456, 6.7443733, 34.471893, 11.807165)
+
+[node name="cornerwall2" type="StaticBody2D" parent="walls"]
+position = Vector2(173.00003, 17)
+scale = Vector2(2.6304922, 2.708925)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/cornerwall2"]
+position = Vector2(-5.322212, -11.074504)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(61.86862, 41.65166, 58.067047, 36.11441, 55.025787, 30.946308, 51.984528, 27.623959, 47.04251, 23.932457, 41.34015, 19.871805, 35.637787, 18.026054, 29.175125, 15.811155, 22.712448, 13.965404, 14.7291565, 11.381353, 8.266495, 9.535603, -1.9977417, 6.9515524, -12.642151, 4.7366514, -20.245285, 3.9983513, -25.187317, 3.6292012, -22.52623, 1.4143007, 59.967834, 2.152601)
+
+[node name="launchpad" parent="walls" instance=ExtResource("4_0gdyc")]
+position = Vector2(642, 552)
+scale = Vector2(3.0699804, 1.2465163)
+
+[node name="launchpad2" parent="walls" instance=ExtResource("4_0gdyc")]
+position = Vector2(31, 552)
+scale = Vector2(3.0699804, 1.2465163)
+
+[node name="paddles" parent="." instance=ExtResource("4_6es2q")]
+position = Vector2(325, 534)
+
+[node name="ballspawner" type="Node2D" parent="."]
+position = Vector2(714, 594)
+script = ExtResource("5_44u67")
+
+[node name="pegs" type="Node" parent="."]
+
+[node name="peg" parent="pegs" instance=ExtResource("6_0gdyc")]
+position = Vector2(336, 118)
+
+[node name="peg2" parent="pegs" instance=ExtResource("6_0gdyc")]
+position = Vector2(411, 191)
+
+[node name="peg3" parent="pegs" instance=ExtResource("6_0gdyc")]
+position = Vector2(266, 191)
+
+[node name="bumpers" type="Node" parent="."]
+
+[node name="bumper2" parent="bumpers" instance=ExtResource("7_7nfcw")]
+position = Vector2(467, 389)
+scale = Vector2(-1, 1)
+dir = "right"
+
+[node name="bumper3" parent="bumpers" instance=ExtResource("7_7nfcw")]
+position = Vector2(209, 389)
+dir = "left"
+
+[node name="ball2" parent="bumpers" instance=ExtResource("8_7xpof")]
+position = Vector2(31, 128)
+
+[node name="ballpathway" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(659.00006, 403.00003)
+rotation = -0.49069035
+scale = Vector2(8.498047, 1)
+
+[node name="Icon" type="Sprite2D" parent="ballpathway"]
+scale = Vector2(0.1599999, 0.1600759)
+texture = ExtResource("2_2wbnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ballpathway"]
+position = Vector2(-3.0517578e-05, 0.32421875)
+shape = SubResource("RectangleShape2D_7nfcw")
+disabled = true
+
+[node name="enable" type="Area2D" parent="ballpathway"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ballpathway/enable"]
+position = Vector2(9.584419, -50.58742)
+rotation = 0.0012104514
+shape = SubResource("RectangleShape2D_7xpof")
+
+[node name="disable" type="Area2D" parent="ballpathway"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ballpathway/disable"]
+position = Vector2(-12.201759, -20.25255)
+shape = SubResource("RectangleShape2D_0gdyc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ballpathway/disable"]
+position = Vector2(-11.265102, -446.83505)
+shape = SubResource("RectangleShape2D_0gdyc")
+
+[connection signal="updatescore" from="ballspawner" to="." method="_on_ballspawner_updatescore"]
+[connection signal="body_entered" from="ballpathway/enable" to="." method="_on_enable_body_entered"]
+[connection signal="body_entered" from="ballpathway/disable" to="." method="_on_disable_body_entered"]

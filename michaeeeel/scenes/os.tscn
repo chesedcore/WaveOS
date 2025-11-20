@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://h4l48cwtgiwe"]
+[gd_scene load_steps=17 format=3 uid="uid://h4l48cwtgiwe"]
 
 [ext_resource type="Texture2D" uid="uid://ddacovx0gpo4n" path="res://assets/bliss.jpg" id="1_jqvav"]
 [ext_resource type="Script" uid="uid://dcevx0ghdvstp" path="res://scripts/screen_handler.gd" id="2_nd5ct"]
@@ -33,6 +33,20 @@ script = ExtResource("5_nvlvj")
 name = "Ballscord"
 icon = ExtResource("8_s2aqv")
 program = "uid://jyw2uyrb313"
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+
+[sub_resource type="Resource" id="Resource_cd0u5"]
+script = ExtResource("5_nvlvj")
+name = "Beach Pinball"
+icon = ExtResource("8_s2aqv")
+program = "uid://cjr6ik84gn0x5"
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+
+[sub_resource type="Resource" id="Resource_14m1s"]
+script = ExtResource("5_nvlvj")
+name = "TrashSweeper"
+icon = ExtResource("8_s2aqv")
+program = "uid://bshmoua7s444t"
 metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp4ya"]
@@ -113,6 +127,14 @@ program_res = SubResource("Resource_y55b8")
 [node name="Ballscord" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
 program_res = SubResource("Resource_8i7xe")
+
+[node name="BeachPinball" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
+layout_mode = 2
+program_res = SubResource("Resource_cd0u5")
+
+[node name="BeachPinball2" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
+layout_mode = 2
+program_res = SubResource("Resource_14m1s")
 
 [node name="Taskbar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
 layout_mode = 2

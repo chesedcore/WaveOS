@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnrg4epwg0k4b"]
+
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_3jvp3"]
+[ext_resource type="Script" uid="uid://mapm4hkx6wui" path="res://scripts/MiniGame Scripts/BeachPinball/ball.gd" id="1_l2ohh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l2ohh"]
+bounce = 0.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6es2q"]
+
+[node name="ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_l2ohh")
+freeze = true
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_l2ohh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6es2q")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(-0.20524178, 0.17064318)
+texture = ExtResource("1_3jvp3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

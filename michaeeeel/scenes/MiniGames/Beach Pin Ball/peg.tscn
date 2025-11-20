@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://52grpydap2jv"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://4045n1lvjni7" path="res://scenes/MiniGames/Beach Pin Ball/pegphysics.tres" id="1_uyg2i"]
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_0uojy"]
+[ext_resource type="Script" uid="uid://bdu7r0oud2uvt" path="res://scripts/MiniGame Scripts/BeachPinball/peg.gd" id="2_hgc38"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44u67"]
+radius = 22.0
+
+[node name="peg" type="StaticBody2D"]
+physics_material_override = ExtResource("1_uyg2i")
+script = ExtResource("2_hgc38")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.315, 0.315)
+texture = ExtResource("2_0uojy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_44u67")
