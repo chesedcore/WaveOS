@@ -3,14 +3,21 @@
 [ext_resource type="Script" uid="uid://dfpskifmp48ab" path="res://scripts/MiniGame Scripts/Beach Breaker/beach_breaker.gd" id="1_grkye"]
 [ext_resource type="PackedScene" uid="uid://iy6s2au50nfs" path="res://scenes/MiniGames/Beach Breaker/breaker_player.tscn" id="2_0ttrq"]
 [ext_resource type="Texture2D" uid="uid://dnnq51qdsvavq" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_vxxka"]
-[ext_resource type="PackedScene" uid="uid://cnacntis1qwrx" path="res://scenes/MiniGames/Beach Breaker/octos.tscn" id="5_7rjm4"]
-[ext_resource type="PackedScene" uid="uid://qq6b0gpqd0en" path="res://scenes/MiniGames/Beach Breaker/breaker_ball.tscn" id="5_wjhh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grkye"]
 size = Vector2(35, 652)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjhh4"]
 size = Vector2(656, 32)
+
+[sub_resource type="Curve2D" id="Curve2D_grkye"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 344, 64, 0, 0, 0, 0, 808, 64, 0, 0, 0, 0, 576, 64, 0, 0, 0, 0, 448, 64, 0, 0, 0, 0, 704, 64, 0, 0, 0, 0, 808, 128, 0, 0, 0, 0, 704, 128, 0, 0, 0, 0, 576, 128, 0, 0, 0, 0, 448, 128, 0, 0, 0, 0, 344, 128, 0, 0, 0, 0, 344, 192, 0, 0, 0, 0, 448, 192, 0, 0, 0, 0, 576, 192, 0, 0, 0, 0, 704, 192, 0, 0, 0, 0, 808, 192, 0, 0, 0, 0, 808, 256, 0, 0, 0, 0, 704, 256, 0, 0, 0, 0, 576, 256, 0, 0, 0, 0, 448, 256, 0, 0, 0, 0, 344, 256)
+}
+point_count = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ttrq"]
+size = Vector2(704, 20)
 
 [node name="BeachBreaker" type="Control"]
 texture_filter = 1
@@ -50,43 +57,9 @@ color = Color(0, 0, 0, 1)
 position = Vector2(574, 324)
 texture = ExtResource("2_vxxka")
 
-[node name="ScreenCenter" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(576, 0)
-
 [node name="BreakerPlayer" parent="." instance=ExtResource("2_0ttrq")]
 unique_name_in_owner = true
 position = Vector2(588, 633)
-
-[node name="BreakerBall" parent="." instance=ExtResource("5_wjhh4")]
-position = Vector2(592, 576)
-
-[node name="Octos" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(360, 184)
-
-[node name="Octos2" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(584, 216)
-
-[node name="Octos3" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(744, 152)
-
-[node name="Octos4" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(776, 304)
-
-[node name="Octos5" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(400, 320)
-
-[node name="Octos6" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(448, 96)
-
-[node name="Octos7" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(672, 80)
-
-[node name="Octos8" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(616, 320)
-
-[node name="Octos9" parent="." instance=ExtResource("5_7rjm4")]
-position = Vector2(800, 224)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -114,3 +87,22 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/U_Wall"]
 shape = SubResource("RectangleShape2D_wjhh4")
+
+[node name="Path2D" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_grkye")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="OctosNode" type="Node2D" parent="."]
+
+[node name="LoseArea" type="Area2D" parent="."]
+position = Vector2(576, 696)
+collision_layer = 0
+collision_mask = 96
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseArea"]
+shape = SubResource("RectangleShape2D_0ttrq")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="area_entered" from="LoseArea" to="." method="_on_lose_area_area_entered"]

@@ -1,23 +1,18 @@
 class_name BreakerPlayer
 extends Area2D
 
-@onready var paddle_hit: Area2D = $PaddleHit
-@onready var paddle_col: CollisionShape2D = $PaddleHit/CollisionShape2D
 @onready var cooldown_timer: Timer = $CooldownTimer
+@onready var breaker_ball: BreakerBall = $BreakerBall
 
 var speed := 400
 var direction := 0.0
 var collided_with_wall := false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.is_action_pressed("ui_accept"):
-			if paddle_col.disabled and cooldown_timer.time_left <= 0:
-				hit_ball()
-				print("HYEHYAHH")
-	
+func _unhandled_input(_event: InputEvent) -> void:
 	direction = Input.get_axis("key_left", "key_right")
-	
+	if Input.is_action_just_pressed("ui_accept") and !breaker_ball.deployed:
+		breaker_ball.deploy_ball()
+
 func _process(delta: float) -> void:
 	var hit_left = $RayL.is_colliding()
 	var hit_right = $RayR.is_colliding()
@@ -29,9 +24,3 @@ func _process(delta: float) -> void:
 
 	if !collided_with_wall:
 		position.x += direction * speed * delta
-
-func hit_ball():
-	paddle_col.disabled = false
-	await get_tree().create_timer(0.08).timeout
-	paddle_col.disabled = true
-	cooldown_timer.start(0.2)
