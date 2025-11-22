@@ -25,3 +25,15 @@ static func message_from(
 		texture_rect.texture = medium
 		msg.media_container.add_child(texture_rect)
 	return msg
+
+static func from_res(message_res: MessageRes) -> Message:
+	var msg: Message = load("res://scenes/utility/messenger/message.tscn").instantiate()
+	msg.actual_text.set_text(message_res.content)
+	msg.icon.texture = message_res.user.pfp
+	msg.username.set_text(message_res.user.username)
+	msg.time.set_text(message_res.timestamp)
+	for medium in message_res.media:
+		var texture_rect := TextureRect.new()
+		texture_rect.texture = medium
+		msg.media_container.add_child(texture_rect)
+	return msg
