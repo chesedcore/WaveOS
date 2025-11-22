@@ -27,4 +27,4 @@ func _on_icon_gui_input(event: InputEvent) -> void:
 func _update_appearance() -> void:
 	if not program_res: return
 	self.icon_rect.texture = program_res.icon
-	self.name_label.text = "[b]"+program_res.name
+	self.name_label.text = program_res.name

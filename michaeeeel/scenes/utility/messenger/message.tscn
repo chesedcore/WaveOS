@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg3dptwmis85o"]
+[gd_scene load_steps=4 format=3 uid="uid://cg3dptwmis85o"]
 
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_irps7"]
+[ext_resource type="Script" uid="uid://bdw2xk8xw6auu" path="res://scripts/ui/message.gd" id="1_xk6bj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpulm"]
 bg_color = Color(0.15294118, 0.15294118, 0.15294118, 0)
@@ -10,7 +11,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 corner_detail = 10
 
-[node name="Message" type="PanelContainer"]
+[node name="Message" type="PanelContainer" node_paths=PackedStringArray("icon", "username", "time", "metadata", "actual_text", "media_container")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 85.0
@@ -18,11 +19,18 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_jpulm")
+script = ExtResource("1_xk6bj")
+icon = NodePath("HBoxContainer/Icon")
+username = NodePath("HBoxContainer/Contents/Meta/Username")
+time = NodePath("HBoxContainer/Contents/Meta/Time")
+metadata = NodePath("HBoxContainer/Contents/Meta/Meta")
+actual_text = NodePath("HBoxContainer/Contents/Content")
+media_container = NodePath("HBoxContainer/Contents/MediaContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("1_irps7")
@@ -75,13 +83,13 @@ autowrap_mode = 0
 layout_mode = 2
 mouse_filter = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer/Contents"]
+[node name="Content" type="RichTextLabel" parent="HBoxContainer/Contents"]
 layout_mode = 2
 mouse_filter = 1
 bbcode_enabled = true
-text = "I've come to make an announcement: Shadow the Hedgehog's a bitch-ass motherfucker. He pissed on my fucking wife. That's right. He took his hedgehog fuckin' quilly dick out and he pissed on my FUCKING wife, and he said his dick was THIS BIG, and I said that's disgusting. So I'm making a callout post on my Twitter.com. Shadow the Hedgehog, you got a small dick. It's the size of this walnut except WAY smaller. And guess what? Here's what my dong looks like. That's right, baby. Tall points, no quills, no pillows, look at that, it looks like two balls and a bong. He fucked my wife, so guess what, I'm gonna fuck the earth. That's right, this is what you get! My SUPER LASER PISS! Except I'm not gonna piss on the earth. I'm gonna go higher. I'm pissing on the MOOOON! How do you like that, OBAMA? I PISSED ON THE MOON, YOU IDIOT! You have twenty-three hours before the piss DROPLETS hit the fucking earth, now get out of my fucking sight before I piss on you too!"
+text = "collect my pages"
 fit_content = true
 autowrap_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Contents"]
+[node name="MediaContainer" type="GridContainer" parent="HBoxContainer/Contents"]
 layout_mode = 2

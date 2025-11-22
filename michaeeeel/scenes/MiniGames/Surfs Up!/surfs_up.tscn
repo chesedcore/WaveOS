@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://x54usaj2rkse"]
+[gd_scene load_steps=5 format=3 uid="uid://x54usaj2rkse"]
 
 [ext_resource type="PackedScene" uid="uid://bxc7q70kentx4" path="res://scenes/minigames/Surfs Up!/surfer_dude.tscn" id="1_4tjdd"]
 [ext_resource type="Texture2D" uid="uid://c0p2os64tctdm" path="res://assets/bliss.jpg" id="2_hv0m1"]

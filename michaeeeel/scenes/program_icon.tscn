@@ -44,8 +44,11 @@ script = ExtResource("3_7ehie")
 
 [node name="Name" type="RichTextLabel" parent="FlowDown"]
 layout_mode = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 10
 bbcode_enabled = true
-text = "[b]Godot Engine"
+text = "Godot Engine"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

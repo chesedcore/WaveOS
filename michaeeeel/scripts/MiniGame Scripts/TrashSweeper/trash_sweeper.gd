@@ -143,10 +143,9 @@ func check_for_trash(row:int,col:int):
 func _process(delta: float) -> void:
 	if !first_move:
 		time+= delta
-		var min :int = time / 60
+		var minimum :int = time / 60
 		var sec :int = int(time) % 60
-		timelabel.text = str(min) +":"+str(sec)
-		
+		timelabel.text = str(minimum) +":"+str(sec)
 
 func on_marked(has_trash:bool):
 	if has_trash:

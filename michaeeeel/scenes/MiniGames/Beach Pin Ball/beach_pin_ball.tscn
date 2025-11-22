@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cj056y3x4mkve" path="res://scripts/MiniGame Scripts/BeachPinball/beach_pin_ball.gd" id="1_d7w0m"]
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_2wbnv"]
-[ext_resource type="Texture2D" uid="uid://dnnq51qdsvavq" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_dtwr6"]
-[ext_resource type="PackedScene" uid="uid://cx6y1oxetgyot" path="res://scenes/MiniGames/Beach Pin Ball/launchpad.tscn" id="4_0gdyc"]
-[ext_resource type="PackedScene" uid="uid://dyyqg4j0dxfgv" path="res://scenes/MiniGames/Beach Pin Ball/paddles.tscn" id="4_6es2q"]
+[ext_resource type="Texture2D" uid="uid://bkbo2bfp0al13" path="res://assets/MiniGame Assets/BeachBreaker/TheBeach.png" id="2_dtwr6"]
+[ext_resource type="PackedScene" uid="uid://cx6y1oxetgyot" path="res://scenes/minigames/Beach Pin Ball/launchpad.tscn" id="4_0gdyc"]
+[ext_resource type="PackedScene" uid="uid://dyyqg4j0dxfgv" path="res://scenes/minigames/Beach Pin Ball/paddles.tscn" id="4_6es2q"]
 [ext_resource type="Script" uid="uid://c045jp23uw0ms" path="res://scripts/MiniGame Scripts/BeachPinball/ballhandler.gd" id="5_44u67"]
-[ext_resource type="PackedScene" uid="uid://52grpydap2jv" path="res://scenes/MiniGames/Beach Pin Ball/peg.tscn" id="6_0gdyc"]
-[ext_resource type="PackedScene" uid="uid://lo0ecvn40vtv" path="res://scenes/MiniGames/Beach Pin Ball/bumper.tscn" id="7_7nfcw"]
-[ext_resource type="PackedScene" uid="uid://dnrg4epwg0k4b" path="res://scenes/MiniGames/Beach Pin Ball/ball.tscn" id="8_7xpof"]
+[ext_resource type="PackedScene" uid="uid://52grpydap2jv" path="res://scenes/minigames/Beach Pin Ball/peg.tscn" id="6_0gdyc"]
+[ext_resource type="PackedScene" uid="uid://lo0ecvn40vtv" path="res://scenes/minigames/Beach Pin Ball/bumper.tscn" id="7_7nfcw"]
+[ext_resource type="PackedScene" uid="uid://dnrg4epwg0k4b" path="res://scenes/minigames/Beach Pin Ball/ball.tscn" id="8_7xpof"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtwr6"]
 size = Vector2(125.30121, 116)

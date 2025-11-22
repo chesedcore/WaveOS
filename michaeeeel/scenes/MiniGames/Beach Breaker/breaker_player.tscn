@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://iy6s2au50nfs"]
 
 [ext_resource type="Script" uid="uid://dbk4ipfq0s1lh" path="res://scripts/MiniGame Scripts/Beach Breaker/breaker_player.gd" id="1_eipsh"]
-[ext_resource type="PackedScene" uid="uid://qq6b0gpqd0en" path="res://scenes/MiniGames/Beach Breaker/breaker_ball.tscn" id="2_n3j6d"]
+[ext_resource type="PackedScene" uid="uid://qq6b0gpqd0en" path="res://scenes/minigames/Beach Breaker/breaker_ball.tscn" id="2_n3j6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mggp"]
 size = Vector2(82, 20)
