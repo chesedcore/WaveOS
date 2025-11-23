@@ -52,7 +52,7 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[node name="Messenger" type="Control" node_paths=PackedStringArray("message_dock", "choice_dock")]
+[node name="Messenger" type="Control" node_paths=PackedStringArray("message_dock")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,7 +61,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o8v34")
 message_dock = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SmoothScrollContainer/MessageDock")
-choice_dock = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ChoiceDock")
 dialogue_file = "uid://bpfuaet1sliur"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -150,7 +149,7 @@ size_flags_vertical = 3
 [node name="Message" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SmoothScrollContainer/MessageDock" instance=ExtResource("4_o8v34")]
 layout_mode = 2
 
-[node name="ChoiceDock" type="PanelContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.2

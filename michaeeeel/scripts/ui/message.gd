@@ -1,4 +1,4 @@
-class_name Message extends PanelContainer
+class_name Message extends ChatItem
 
 @export var icon: TextureRect
 @export var username: RichTextLabel
@@ -8,7 +8,7 @@ class_name Message extends PanelContainer
 @export var actual_text: RichTextLabel
 @export var media_container: GridContainer
 
-static func message_from(
+static func from(
 	user: User, 
 	text: String, 
 	post_time: String, 
@@ -37,3 +37,6 @@ static func from_res(message_res: MessageRes) -> Message:
 		texture_rect.texture = medium
 		msg.media_container.add_child(texture_rect)
 	return msg
+
+func _init() -> void:
+	self.type = ChatItem.TYPE.MESSAGE

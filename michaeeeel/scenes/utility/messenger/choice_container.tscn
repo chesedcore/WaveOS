@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://by27k1kjxq8xu"]
+
+[ext_resource type="Script" uid="uid://h1s1vat5f6cr" path="res://scenes/utility/messenger/choice_container.gd" id="1_4x2o4"]
+
+[node name="ChoiceContainer" type="HBoxContainer"]
+theme_override_constants/separation = 4
+script = ExtResource("1_4x2o4")

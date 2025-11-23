@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://2bemy6nlln61"]
+
+[ext_resource type="Script" uid="uid://bj6etbycynwm" path="res://scenes/utility/messenger/choice.gd" id="1_n8pjx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q27p7"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 12
+
+[node name="Choice" type="PanelContainer" node_paths=PackedStringArray("label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q27p7")
+script = ExtResource("1_n8pjx")
+label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+mouse_filter = 1
+text = "i know where you live"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

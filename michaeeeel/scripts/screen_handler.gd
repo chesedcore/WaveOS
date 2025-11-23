@@ -14,6 +14,13 @@ var registry: Dictionary[ProgramResource, RegistryEntry] = {
 func _ready() -> void:
 	wire_up_signals()
 
+func _process(_delta: float) -> void:
+	assert(print_orphaned_nodes())
+
+func print_orphaned_nodes() -> bool:
+	if get_orphan_node_ids(): print_orphan_nodes()
+	return true
+
 func wire_up_signals() -> void:
 	Bus.request_open_from_icon.connect(_on_icon_open_request)
 	Bus.request_close_from_res.connect(_on_close_request)
@@ -25,7 +32,7 @@ func _on_icon_open_request(program_icon: ProgramIcon) -> void:
 		print("Too many programs, request denied.")
 		return
 	
-	#get a duped res, a dupe is important here to not link the same programres
+	#get a duped res, a dupe is important here to not link the same program_res
 	#with multiple different programs
 	var key_res: ProgramResource = program_icon.program_res.duplicate()
 	
