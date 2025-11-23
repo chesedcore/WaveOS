@@ -15,6 +15,7 @@ func set_flag(flag_name: String) -> void:
 	set(flag_name, true)
 
 func _event_occured(event_id: String) -> void:
+	print_rich("[color=green]Event id '"+event_id+"' has fired!")
 	set_flag(event_id)
 	game_event.emit()
 

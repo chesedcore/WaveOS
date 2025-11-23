@@ -14,6 +14,7 @@ func get_line_at(id: String = "") -> DialogueLine:
 func set_pointer(ptr: String) -> void: current_id = ptr
 
 func line_filter(line: DialogueLine) -> DialogueLine:
+	if not line: return
 	if line.tags.is_empty(): return line
 	for tag: String in line.tags:
 		print_rich("Attempting to check if tag [color=yellow]"+tag+"[/color] is true.")
