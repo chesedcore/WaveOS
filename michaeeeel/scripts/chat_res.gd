@@ -7,7 +7,7 @@ const INDETERMINATE := "balls"
 var wrapper: DialogueWrapper
 
 var needs_rebuild: bool = false
-var rebuild_till: String = ""
+var limit_id: String = ""
 
 ##a dict that maps the choices id to the chosen response id
 var choices_cache: Dictionary[String, Response]
@@ -20,6 +20,10 @@ static func from(dialogue_file: StringName) -> ChatRes:
 func get_next_dialogue() -> ChatItem:
 	var line := await wrapper.get_next_line()
 	if not line: return null
+	
+	if limit_id == line.id:
+		print_rich("[color=red]Dialogue limit reached, stopping. Limit: "+limit_id)
+		return
 	
 	if not line.responses:
 		return get_message_from(line)
@@ -37,6 +41,9 @@ func get_choice_pane_from(line: DialogueLine) -> ChatItem:
 
 func reset_pointer() -> void:
 	wrapper.set_pointer("")
+
+func set_stop_limit(id: String) -> void:
+	limit_id = id
 
 func get_next_cached(seen: Array[String]) -> ChatItem:
 	var line := await wrapper.get_current_line()
@@ -58,6 +65,10 @@ func get_next_cached(seen: Array[String]) -> ChatItem:
 		return Message.from(Data.protagonist_user, chosen_response.text, "REPLAAACE")
 	
 	wrapper.set_pointer(line.next_id)
+	if line.id == limit_id:
+		print_rich("[color=red]Build limit reached, stopping. Limit: "+limit_id)
+		return
+	
 	return Message.from(
 		Data.username_to_user[line.character],
 		line.text, "REPLACE_THIS_SHIT_SOON"

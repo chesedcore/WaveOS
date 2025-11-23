@@ -33,16 +33,12 @@ func roll_chat() -> void:
 			ChatItem.TYPE.CHOICE:
 				print("It's a choice...")
 				add_choices(item)
-				chat.rebuild_till = item.id
+				chat.set_stop_limit(item.id)
 				print("Setting rebuild ID to ",item.id, " and breaking.")
 				break
 
 func add_message(msg: Message) -> void:
 	message_dock.add_child(msg)
-	#crash on memory leak
-	if message_dock.get_child_count() > 20:
-		print("Crash! Memory leak detected!") 
-		get_tree().quit()
 
 func add_choices(choice: ChoiceContainer) -> void:
 	choice_dock.add_child(choice)
@@ -52,6 +48,9 @@ func chosen(cont: ChoiceContainer, choice_text: String, next_id: String) -> void
 	var msg := Message.from(Data.protagonist_user, choice_text, "REPLACE_THIS")
 	message_dock.add_child(msg)
 	chat.wrapper.set_pointer(next_id)
+	
+	chat.set_stop_limit("")
+	
 	print_rich("[color=blue]Added "+cont.id+" -> "+next_id+" to the cache.")
 	chat.choices_cache[cont.id] = Response.from(next_id, choice_text)
 	cont.queue_free()

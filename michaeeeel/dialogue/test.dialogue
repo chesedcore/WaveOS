@@ -1,5 +1,7 @@
 ~ start
 protag: [[Hi|Hello|Howdy]], this is some dialogue.
+protag: More dialogue, blah blah.
+protag: [#test_case] This dialogue only shows up if "Data.test_case" is true.
 protag: here are some choices.
 protag: choices:
 - First one

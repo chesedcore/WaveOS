@@ -73,3 +73,7 @@ func _on_close_request(program_res: ProgramResource) -> void:
 
 func _on_requested_focus(program: Program) -> void:
 	program.move_to_front()
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("test_case_switch"):
+		Gamestate.game_event_intent.emit("test_case")
