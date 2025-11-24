@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfows2nclby2n"]
+
+[ext_resource type="Script" uid="uid://cmbfuu140346r" path="res://scripts/MiniGame Scripts/Sea Snake/snakesegmant.gd" id="1_jqi8h"]
+
+[node name="Snakesegmant" type="Node2D"]
+script = ExtResource("1_jqi8h")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1yw4wmwn6ldi"]
+
+[ext_resource type="Script" uid="uid://swmn1sjiajfn" path="res://scripts/MiniGame Scripts/Sea Snake/snakehead.gd" id="1_oym7e"]
+
+[node name="Snakehead" type="Node2D"]
+script = ExtResource("1_oym7e")

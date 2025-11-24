@@ -168,6 +168,7 @@ func lose_game():
 	gameovermsg.text = "GAME OVER"
 	gameovermsg.visible = true
 	first_move = true
+	lost_minigame.emit()
 
 func clearAllCells():
 	for row in range(ROWS): 
@@ -179,3 +180,4 @@ func clearAllCells():
 
 func wingame():
 	gameovermsg.visible = true
+	won_minigame.emit()
