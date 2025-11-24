@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ProgramResource" load_steps=3 format=3 uid="uid://blbr13ghylofl"]
+
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_odpmc"]
+[ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="2_1hjlr"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_1hjlr")
+name = "Ballscord"
+icon = ExtResource("1_odpmc")
+program = "uid://jyw2uyrb313"
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
