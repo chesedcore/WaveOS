@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
 [ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
 [ext_resource type="Texture2D" uid="uid://bjewqb88tv8as" path="res://assets/terminal.png" id="7_5hobq"]
+[ext_resource type="Resource" uid="uid://blbr13ghylofl" path="res://res/messenger.tres" id="8_8i7xe"]
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="8_s2aqv"]
 [ext_resource type="Texture2D" uid="uid://bsw68k17jemb4" path="res://assets/MiniGame Assets/WaveOS/WaveOsLogoPixel.png" id="9_8i7xe"]
 
@@ -26,14 +27,6 @@ script = ExtResource("5_nvlvj")
 name = "Beach Breaker"
 icon = ExtResource("5_7pos1")
 program = "uid://craqbkxhbmer8"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
-
-[sub_resource type="Resource" id="Resource_ldvm6"]
-resource_local_to_scene = true
-script = ExtResource("5_nvlvj")
-name = "Ballscord"
-icon = ExtResource("8_s2aqv")
-program = "uid://jyw2uyrb313"
 metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
 [sub_resource type="Resource" id="Resource_cd0u5"]
@@ -98,6 +91,7 @@ script = ExtResource("2_nd5ct")
 program_dock = NodePath("ProgramDock")
 bottom_bar = NodePath("Screen/Taskbar")
 program_count_limit = 12
+messenger_res = ExtResource("8_8i7xe")
 metadata/_edit_lock_ = true
 
 [node name="Screen" type="VBoxContainer" parent="ScreenHandler"]
@@ -127,7 +121,7 @@ program_res = SubResource("Resource_8i7xe")
 
 [node name="Ballscord" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
-program_res = SubResource("Resource_ldvm6")
+program_res = ExtResource("8_8i7xe")
 
 [node name="BeachPinball" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2

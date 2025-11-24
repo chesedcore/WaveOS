@@ -7,9 +7,14 @@ class_name ScreenHandler extends Control
 
 @export var program_count_limit: int = 9
 
+
 var registry: Dictionary[ProgramResource, RegistryEntry] = {
 	
 }
+
+#special programs that i need to hardcode for
+@export_category("Special Programs")
+@export var messenger_res: ProgramResource
 
 func _ready() -> void:
 	wire_up_signals()
@@ -25,16 +30,20 @@ func wire_up_signals() -> void:
 	Bus.request_open_from_icon.connect(_on_icon_open_request)
 	Bus.request_close_from_res.connect(_on_close_request)
 	Bus.request_focus.connect(_on_requested_focus)
+	Gamestate.game_event.connect(_on_game_event_occured)
 
 func _on_icon_open_request(program_icon: ProgramIcon) -> void:
 	
+	#do not allow programs above a limit, or UI explodes lmao
 	if registry.size() >= program_count_limit:
-		print("Too many programs, request denied.")
+		print_rich("[color=red]Too many programs, request denied.")
 		return
 	
-	#get a duped res, a dupe is important here to not link the same program_res
-	#with multiple different programs
-	var key_res: ProgramResource = program_icon.program_res.duplicate()
+	#check if that program already exists, and if so, deny it
+	var key_res: ProgramResource = program_icon.program_res
+	if key_res in registry:
+		print_rich("[color=red]That program is already open.")
+		return
 	
 	#open up a program
 	print("Request to open program from icon: ", program_icon)
@@ -77,3 +86,11 @@ func _on_requested_focus(program: Program) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("test_case_switch"):
 		Gamestate.game_event_intent.emit("test_case")
+
+func _on_game_event_occured() -> void:
+	roll_messenger()
+
+func roll_messenger() -> void:
+	#if the messenger is active, you roll the chat inside the messenger.
+	#otherwise you insert push notifs.
+	pass ##TODO
