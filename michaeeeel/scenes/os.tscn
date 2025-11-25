@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://h4l48cwtgiwe"]
+[gd_scene load_steps=21 format=3 uid="uid://h4l48cwtgiwe"]
 
 [ext_resource type="Texture2D" uid="uid://ddacovx0gpo4n" path="res://assets/bliss.jpg" id="1_jqvav"]
 [ext_resource type="Script" uid="uid://dcevx0ghdvstp" path="res://scripts/screen_handler.gd" id="2_nd5ct"]
@@ -53,9 +53,16 @@ metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
 [sub_resource type="Resource" id="Resource_bp7kc"]
 script = ExtResource("5_nvlvj")
-name = "SeaSnake"
+name = "Seasnake"
 icon = ExtResource("8_s2aqv")
 program = "uid://cardnytx4ta23"
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+
+[sub_resource type="Resource" id="Resource_nto4e"]
+script = ExtResource("5_nvlvj")
+name = "Card Game"
+icon = ExtResource("8_s2aqv")
+program = "uid://c6cyngqmqe1o6"
 metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp4ya"]
@@ -149,6 +156,10 @@ program_res = SubResource("Resource_14m1s")
 [node name="SeaSnake" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
 layout_mode = 2
 program_res = SubResource("Resource_bp7kc")
+
+[node name="CardGame" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
+layout_mode = 2
+program_res = SubResource("Resource_nto4e")
 
 [node name="Taskbar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
 layout_mode = 2
