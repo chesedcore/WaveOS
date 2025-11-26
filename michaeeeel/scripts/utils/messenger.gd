@@ -33,7 +33,7 @@ func roll_chat() -> void:
 			ChatItem.TYPE.CHOICE:
 				print("It's a choice...")
 				add_choices(item)
-				chat.set_stop_limit(item.id)
+				#chat.set_stop_limit(item.id)
 				print("Setting rebuild ID to ",item.id, " and breaking.")
 				break
 
@@ -49,7 +49,7 @@ func chosen(cont: ChoiceContainer, choice_text: String, next_id: String) -> void
 	message_dock.add_child(msg)
 	chat.wrapper.set_pointer(next_id)
 	
-	chat.set_stop_limit("")
+	#chat.set_stop_limit("")
 	
 	print_rich("[color=blue]Added "+cont.id+" -> "+next_id+" to the cache.")
 	chat.choices_cache[cont.id] = Response.from(next_id, choice_text)

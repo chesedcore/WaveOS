@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyyqg4j0dxfgv"]
 
 [ext_resource type="Script" uid="uid://ced6obpoe0hfa" path="res://scripts/MiniGame Scripts/BeachPinball/paddles.gd" id="1_n2pxf"]
-[ext_resource type="PackedScene" uid="uid://u61pj616flmd" path="res://scenes/minigames/Beach Pin Ball/paddle.tscn" id="2_wn2e4"]
+[ext_resource type="PackedScene" uid="uid://u61pj616flmd" path="res://scenes/MiniGames/Beach Pin Ball/paddle.tscn" id="2_wn2e4"]
 
 [node name="paddles" type="Node2D"]
 script = ExtResource("1_n2pxf")
