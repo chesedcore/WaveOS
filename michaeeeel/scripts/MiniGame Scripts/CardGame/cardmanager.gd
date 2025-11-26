@@ -7,6 +7,8 @@ const  CARD_DEFUALT_SIZE = Vector2(1.5,1.5)
 const CARD_HIGHLIGHT_SIZE = Vector2(1.75,1.75)
 var card_being_dragged : Card
 var screen_size
+@onready var playerhand: Hand = $"../Playerhand"
+@onready var card_inputmanager: Node2D = $"../CardInputmanager"
 
 var is_hovering_on_card = false
 
@@ -41,7 +43,8 @@ func highlight_Card(card: Card,hovered:bool):
 	else:
 		var tween = create_tween()
 		tween.tween_property(card,"scale",CARD_DEFUALT_SIZE,0.25)
-		card.z_index = 1
+		if !card.is_in_slot:
+			card.z_index = 1
 
 
 
@@ -59,7 +62,7 @@ func raycast_check_for_card() ->Card:
 
 
 
-func raycast_check_for_cardslot() :
+func raycast_check_for_cardslot() -> CardSlot :
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()
@@ -92,18 +95,18 @@ func  _process(delta: float) -> void:
 		card_being_dragged.position = mouse_pos
 		card_being_dragged.position = Vector2(clamp(mouse_pos.x,0,screen_size.x),clamp(mouse_pos.y,0,screen_size.y))
 
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			var card = raycast_check_for_card()
-			if card:
-				start_drag(card)
-		else :
-			if card_being_dragged:
-				finish_drag()
-			
-			
+#
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.pressed:
+			#var card = raycast_check_for_card()
+			#if card:
+				#start_drag(card)
+		#else :
+			#if card_being_dragged:
+				#finish_drag()
+			#
+			#
 			
 func start_drag(card:Card):
 	card_being_dragged = card
@@ -111,8 +114,22 @@ func start_drag(card:Card):
 func finish_drag():
 	card_being_dragged.scale = CARD_HIGHLIGHT_SIZE
 	var card_slot_found  = raycast_check_for_cardslot()
-	if card_slot_found:
+	if card_slot_found and !card_slot_found.card_in_slot:
+		playerhand.remove_card_from_hand(card_being_dragged)
+		card_slot_found.card_in_slot = card_being_dragged
 		card_being_dragged.position = card_slot_found.position
+		card_being_dragged.z_index = 0
 		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+	else:
+		playerhand.add_card_to_hand(card_being_dragged)
 	card_being_dragged = null
 	
+
+
+func _on_card_inputmanager_lmb_clicked() -> void:
+	pass # Replace with function body.
+
+
+func _on_card_inputmanager_lmb_released() -> void:
+	if card_being_dragged:
+		finish_drag()

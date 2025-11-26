@@ -1,5 +1,8 @@
+class_name  CardSlot
+
 extends Node2D
 
+var card_in_slot :Card = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
