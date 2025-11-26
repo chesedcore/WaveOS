@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://52grpydap2jv"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://4045n1lvjni7" path="res://scenes/minigames/Beach Pin Ball/pegphysics.tres" id="1_uyg2i"]
+[ext_resource type="PhysicsMaterial" uid="uid://4045n1lvjni7" path="res://scenes/MiniGames/Beach Pin Ball/pegphysics.tres" id="1_uyg2i"]
 [ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="2_0uojy"]
 [ext_resource type="Script" uid="uid://bdu7r0oud2uvt" path="res://scripts/MiniGame Scripts/BeachPinball/peg.gd" id="2_hgc38"]
 

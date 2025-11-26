@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://nqylh2fqs7hs"]
 
-[ext_resource type="Texture2D" uid="uid://c4hckm15xdr44" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_tohpi"]
+[ext_resource type="Texture2D" uid="uid://r5mrh46gsg7u" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="1_tohpi"]
 
 [node name="TextureRect" type="TextureRect"]
 custom_minimum_size = Vector2(40, 75)

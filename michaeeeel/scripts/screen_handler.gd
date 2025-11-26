@@ -30,6 +30,7 @@ func wire_up_signals() -> void:
 	Bus.request_open_from_icon.connect(_on_icon_open_request)
 	Bus.request_close_from_res.connect(_on_close_request)
 	Bus.request_focus.connect(_on_requested_focus)
+	Bus.message_arrived.connect(_on_message_arrived)
 	Gamestate.game_event.connect(_on_game_event_occured)
 
 func _on_icon_open_request(program_icon: ProgramIcon) -> void:
@@ -90,7 +91,16 @@ func _input(_event: InputEvent) -> void:
 func _on_game_event_occured() -> void:
 	roll_messenger()
 
+func _on_message_arrived(user: String, text: String) -> void:
+	print_rich("[color=white]"+user+": "+text)
+
+func is_program_active(program_res: ProgramResource) -> bool:
+	if not program_res in registry: return false
+	var link := registry[program_res]
+	var program := link.linked_program
+	return program_dock.get_child(-1) == program
+
 func roll_messenger() -> void:
 	#if the messenger is active, you roll the chat inside the messenger.
 	#otherwise you insert push notifs.
-	pass ##TODO
+	Data.test_res.force_roll()

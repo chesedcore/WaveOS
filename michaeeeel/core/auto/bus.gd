@@ -4,3 +4,5 @@ signal request_open_from_icon(program_icon: ProgramIcon)
 signal request_close_from_res(program: ProgramResource)
 
 signal request_focus(program: Program)
+
+signal message_arrived(username: String, text: String)
