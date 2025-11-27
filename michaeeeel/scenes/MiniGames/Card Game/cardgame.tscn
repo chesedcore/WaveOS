@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6cyngqmqe1o6"]
+[gd_scene load_steps=10 format=3 uid="uid://c6cyngqmqe1o6"]
 
 [ext_resource type="Script" uid="uid://b52dh0jy8mr4l" path="res://scripts/MiniGame Scripts/CardGame/cardgame.gd" id="1_vshwg"]
+[ext_resource type="Script" uid="uid://dvwij4jxpek4y" path="res://scripts/MiniGame Scripts/CardGame/opponenthand.gd" id="2_eu0ba"]
 [ext_resource type="Script" uid="uid://ujbqgnh5xflw" path="res://scripts/MiniGame Scripts/CardGame/cardmanager.gd" id="2_s0mie"]
 [ext_resource type="Script" uid="uid://dnaiggupjhcj5" path="res://scripts/MiniGame Scripts/CardGame/card_inputmanager.gd" id="3_b0aec"]
 [ext_resource type="Script" uid="uid://cdxpmhm7tcqb1" path="res://scripts/MiniGame Scripts/CardGame/playerhand.gd" id="4_eu0ba"]
 [ext_resource type="PackedScene" uid="uid://dpv746peuuhed" path="res://scenes/MiniGames/Card Game/deck.tscn" id="6_b0aec"]
 [ext_resource type="PackedScene" uid="uid://djtn4c5j6la3y" path="res://scenes/MiniGames/Card Game/cardslot.tscn" id="6_s0mie"]
 [ext_resource type="PackedScene" uid="uid://cq4cwgdyf71b3" path="res://scenes/MiniGames/Card Game/opponentcardslot.tscn" id="7_b0aec"]
+[ext_resource type="Script" uid="uid://cwg6dvxr66ldo" path="res://scripts/MiniGame Scripts/CardGame/game_manager.gd" id="9_kqur3"]
 
 [node name="Cardgame" type="Control"]
 layout_mode = 3
@@ -17,6 +19,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_vshwg")
+
+[node name="Opponenthand" type="Node2D" parent="."]
+script = ExtResource("2_eu0ba")
 
 [node name="Cardmanager" type="Node2D" parent="."]
 script = ExtResource("2_s0mie")
@@ -30,7 +35,7 @@ script = ExtResource("4_eu0ba")
 [node name="Deck" parent="." instance=ExtResource("6_b0aec")]
 position = Vector2(169, 333)
 
-[node name="Playercardslots" type="Node" parent="."]
+[node name="Playercardslots" type="Node2D" parent="."]
 
 [node name="Cardslot" parent="Playercardslots" instance=ExtResource("6_s0mie")]
 position = Vector2(423, 510)
@@ -41,16 +46,40 @@ position = Vector2(557, 372)
 [node name="Cardslot3" parent="Playercardslots" instance=ExtResource("6_s0mie")]
 position = Vector2(719, 440)
 
-[node name="Opponentcardslots" type="Node" parent="."]
+[node name="Opponentcardslots" type="Node2D" parent="."]
 
 [node name="Opponentcardslot" parent="Opponentcardslots" instance=ExtResource("7_b0aec")]
+position = Vector2(684, 80)
+
+[node name="Opponentcardslot2" parent="Opponentcardslots" instance=ExtResource("7_b0aec")]
+z_index = -4
 position = Vector2(557, 222)
 
 [node name="Opponentcardslot3" parent="Opponentcardslots" instance=ExtResource("7_b0aec")]
 position = Vector2(397.00003, 157)
 
-[node name="Opponentcardslot2" parent="Opponentcardslots" instance=ExtResource("7_b0aec")]
-position = Vector2(684, 80)
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("9_kqur3")
+
+[node name="OpponentTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -73.0
+offset_right = -86.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Reveal"
 
 [connection signal="lmb_clicked" from="CardInputmanager" to="Cardmanager" method="_on_card_inputmanager_lmb_clicked"]
 [connection signal="lmb_released" from="CardInputmanager" to="Cardmanager" method="_on_card_inputmanager_lmb_released"]
+[connection signal="pressed" from="Button" to="GameManager" method="_on_button_pressed"]

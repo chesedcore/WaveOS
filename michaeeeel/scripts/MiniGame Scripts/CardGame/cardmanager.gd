@@ -119,6 +119,7 @@ func finish_drag():
 		card_slot_found.card_in_slot = card_being_dragged
 		card_being_dragged.position = card_slot_found.position
 		card_being_dragged.z_index = 0
+		card_being_dragged.animation_player.play_backwards("flip")
 		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 	else:
 		playerhand.add_card_to_hand(card_being_dragged)

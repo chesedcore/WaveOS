@@ -7,6 +7,7 @@
 size = Vector2(43.333336, 60.666668)
 
 [node name="Cardslot" type="Node2D"]
+z_index = -2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_wwyhx")
 

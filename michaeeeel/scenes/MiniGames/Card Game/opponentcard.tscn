@@ -1,58 +1,58 @@
-[gd_scene load_steps=21 format=3 uid="uid://d36vamsycohxs"]
+[gd_scene load_steps=20 format=3 uid="uid://dp4dkttvsfcmk"]
 
-[ext_resource type="Script" uid="uid://cg1rdc34bd1nn" path="res://scripts/MiniGame Scripts/CardGame/card.gd" id="1_1lph7"]
-[ext_resource type="Texture2D" uid="uid://356bjlobrrrs" path="res://assets/MiniGame Assets/Poker cards 1.3/1.2 Poker cards.png" id="1_uxhas"]
+[ext_resource type="Script" uid="uid://cg1rdc34bd1nn" path="res://scripts/MiniGame Scripts/CardGame/card.gd" id="1_ndk3j"]
+[ext_resource type="Texture2D" uid="uid://356bjlobrrrs" path="res://assets/MiniGame Assets/Poker cards 1.3/1.2 Poker cards.png" id="2_6sup8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lph7"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(0, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v22ij"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(48, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ehra8"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(96, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53nfd"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(144, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m1h6w"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(192, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yp0m7"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(240, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bw1v4"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(288, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ue1s5"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(336, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmyba"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(384, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_peke0"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(432, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g20px"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(480, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1rjt"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(528, 128, 48, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht2ik"]
-atlas = ExtResource("1_uxhas")
+atlas = ExtResource("2_6sup8")
 region = Rect2(576, 128, 48, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vvgg6"]
@@ -101,9 +101,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ob7s"]
-size = Vector2(44, 61)
 
 [sub_resource type="Animation" id="Animation_v22ij"]
 length = 0.001
@@ -158,7 +155,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_1lph7"]
 resource_name = "flip"
-length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -216,7 +212,7 @@ _data = {
 
 [node name="Card" type="Node2D"]
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_1lph7")
+script = ExtResource("1_ndk3j")
 
 [node name="cardimg" type="AnimatedSprite2D" parent="."]
 z_index = -1
@@ -225,20 +221,11 @@ frame = 1
 frame_progress = 0.693875
 
 [node name="cardback" type="Sprite2D" parent="."]
-texture = ExtResource("1_uxhas")
+texture = ExtResource("2_6sup8")
 region_enabled = true
 region_rect = Rect2(240.13431, 256.1404, 47.878418, 63.98297)
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_2ob7s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ehra8")
 }
-
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
