@@ -11,4 +11,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if card_in_slot:
+		card_in_slot.position = global_position

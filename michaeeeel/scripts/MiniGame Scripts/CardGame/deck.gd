@@ -5,8 +5,8 @@ extends Node2D
 
 const CARD = preload("uid://d36vamsycohxs")
 const OPPONENTCARD = preload("uid://dp4dkttvsfcmk")
-var DECK =[1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13]
-var deck =  DECK
+
+var deck = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	deck.shuffle()
@@ -24,8 +24,9 @@ func round_draw():
 		draw_card(playerhand)
 		draw_card(opponenthand)
 func draw_card(hand):
-	if deck.size() ==0 :
-		deck = DECK
+	var shuf_chance = randi_range(1,4)
+	if shuf_chance ==1 :
+		
 		deck.shuffle()
 	var  card_drawn  = deck[0]
 	deck.erase(card_drawn)

@@ -1,7 +1,13 @@
 extends Node
 @onready var playercardslots: Node2D = $"../Playercardslots"
 @onready var deck: Node2D = $"../Deck"
+@onready var playervalues: RichTextLabel = $"../playervalues"
+@onready var opponentvalues: RichTextLabel = $"../opponentvalues"
 
+@onready var wavecrashtext: RichTextLabel = $"../Wavecrashcutin/Wavecrashtext"
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var health: RichTextLabel = $"../playerHealth/background/ColorRect/health"
+var current_health = 100
 @onready var opponentcardslots: Node2D = $"../Opponentcardslots"
 @onready var opponenthand: Opponent_Hand = $"../Opponenthand"
 @onready var opponent_timer: Timer = $"../OpponentTimer"
@@ -31,6 +37,8 @@ func oppnents_move():
 		cardslot.card_in_slot = chosen_card
 		
 func choose_cards():
+	opponents_choosen_cards.clear()
+	var low_chance = randi_range(1,4)
 	var opponents_sorted_hand =[]
 	for i in range(opponenthand.player_hand.size()):
 		if opponenthand.player_hand[i].value not in opponents_sorted_hand:
@@ -41,10 +49,17 @@ func choose_cards():
 	else:
 		for i in range(3):
 			var card
-			for j in range(opponenthand.player_hand.size()):
-				if opponenthand.player_hand[j].value == opponents_sorted_hand[opponents_sorted_hand.size() -1 -i]:
-					card = opponenthand.player_hand[j]
-					break
+			if low_chance ==1:
+				print("doing the lowest")
+				for j in range(opponenthand.player_hand.size()):
+					if opponenthand.player_hand[j].value == opponents_sorted_hand[i]:
+						card = opponenthand.player_hand[j]
+						break
+			else:
+				for j in range(opponenthand.player_hand.size()):
+					if opponenthand.player_hand[j].value == opponents_sorted_hand[opponents_sorted_hand.size() -1 -i]:
+						card = opponenthand.player_hand[j]
+						break
 			opponents_choosen_cards.insert( i,card)
 	
 func check_card_slots ()->bool:
@@ -69,33 +84,117 @@ func _on_button_pressed() -> void:
 func check_values():
 	var playersum = 0
 	var opponentsum = 0
+	var player_bonus = 1
+	var opponent_bonus =1
+	var player_values_text :String
+	var opponents_values_text : String
+	var is_consecutive_player = true
+	var is_consecutive_opponent = true
 	for i in range(3):
 		if i >0 and (playercardslots.get_children()[i].card_in_slot.value <= playercardslots.get_children()[i-1].card_in_slot.value ):
 			playersum = 0
+			is_consecutive_player = false
 		else :
-			playersum += playercardslots.get_children()[i].card_in_slot.value 
+			playersum += playercardslots.get_children()[i].card_in_slot.value
+			if  i >0 and !(playercardslots.get_children()[i].card_in_slot.value - playercardslots.get_children()[i-1].card_in_slot.value == 1 ):
+				is_consecutive_player = false
 		if i >0 and (opponentcardslots.get_children()[i].card_in_slot.value <= opponentcardslots.get_children()[i-1].card_in_slot.value ):
 			opponentsum = 0
+			is_consecutive_opponent = false
 		else :
 			opponentsum += opponentcardslots.get_children()[i].card_in_slot.value 
+			if i >0 and !(opponentcardslots.get_children()[i].card_in_slot.value - opponentcardslots.get_children()[i-1].card_in_slot.value == 1 ):
+				is_consecutive_opponent = false
+	player_values_text =  "Sum: "+str(playersum)+"\n"
+	opponents_values_text =  "Sum: "+str(opponentsum)+"\n"
+	var bonus_text = "No Bonus\n"
+	if is_consecutive_player:
+		player_bonus = 2
+		bonus_text = "Consecutive Bonus : x2\n"
+		
+	player_values_text += bonus_text
 	
-	if playersum > opponentsum:
-		print("YOU WON THE WAVE CRASH" + str(playersum) +str(opponentsum))
-	elif  playersum == opponentsum:
-		print("THE WAVES ARE EQUAL" )
+	bonus_text = "No Bonus\n"
+	if is_consecutive_opponent:
+		opponent_bonus = 2
+		bonus_text = "Consecutive Bonus : x2\n"
+	
+	opponents_values_text += bonus_text
+	var player_total = playersum * player_bonus
+	player_values_text += str(player_total)
+	
+	
+	
+	var opponent_total = opponentsum * opponent_bonus
+	opponents_values_text += str(opponent_total)
+	playervalues.text = player_values_text
+	opponentvalues.text = opponents_values_text
+	await display_values()
+
+	
+	if player_total>opponent_total:
+		wavecrashtext.text = "YOU WON THE WAVE CRASH!"
+		animation_player.play("cut_in")
+		await player_wave_animation(playercardslots)
+		
+		print("YOU WON THE WAVE CRASH" + str(player_total) +str(opponent_total))
+	elif  player_total == opponent_total:
+		
+		wavecrashtext.text = "THE WAVES WERE EQUAL!"
+		animation_player.play("cut_in")
 	else :
-		print("YOU LOST THE WAVE CRASH"  + str(playersum) +str(opponentsum))
+		var damage = opponent_total - player_total
+		inflict_Damage_To_Player(damage)
+		wavecrashtext.text = "YOU LOST THE WAVE CRASH!"
+		animation_player.play("cut_in")
+		await opponent_wave_animation(opponentcardslots)
+		print("YOU LOST THE WAVE CRASH"  + str(player_total) +str(opponent_total))
 	reset_board()
 
+func opponent_wave_animation(cardslots :Node2D):
+	var wave_tween = create_tween()
+	wave_tween.tween_property(cardslots,"position",Vector2(425,300),1)
+	wave_tween.tween_property(cardslots,"position",Vector2(-300,300),.75)
+	await wave_tween.finished
+	var reset = create_tween()
+	reset.tween_property(cardslots,"position",Vector2(0,0),.5)
+
+
+func display_values():
+	var text_tween = create_tween()
+	text_tween.set_parallel()
+	text_tween.tween_property(playervalues,"visible_ratio",1,1)
+	text_tween.tween_property(opponentvalues,"visible_ratio",1,1)
+	await  text_tween.finished
+	
+
+
+
+func player_wave_animation(cardslots: Node2D):
+	var wave_tween = create_tween()
+	wave_tween.tween_property(cardslots,"position",Vector2(-350,-300),1)
+	wave_tween.tween_property(cardslots,"position",Vector2(350,-300),.75)
+	await wave_tween.finished
+	var reset = create_tween()
+	reset.tween_property(cardslots,"position",Vector2(0,0),.5)
 
 func reset_board():
 	for i in range(3):
+		deck.deck.push_back(playercardslots.get_children()[i].card_in_slot.value)
+		deck.deck.push_back(opponentcardslots.get_children()[i].card_in_slot.value)
 		playercardslots.get_children()[i].card_in_slot.queue_free()
 		opponentcardslots.get_children()[i].card_in_slot.queue_free()
 		opponent_timer.start()
 		
 		await  opponent_timer.timeout
 	$"../Button".disabled = false
+	playervalues.visible_ratio =0.0
+	opponentvalues.visible_ratio = 0.0
 	deck.round_draw()
 	oppnents_move()
 	
+func inflict_Damage_To_Player(damage : int):
+	current_health = current_health - damage
+	if current_health < 0:
+		current_health = 0
+	health.text = str(current_health)

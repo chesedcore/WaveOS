@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6cyngqmqe1o6"]
+[gd_scene load_steps=13 format=3 uid="uid://c6cyngqmqe1o6"]
 
 [ext_resource type="Script" uid="uid://b52dh0jy8mr4l" path="res://scripts/MiniGame Scripts/CardGame/cardgame.gd" id="1_vshwg"]
 [ext_resource type="Script" uid="uid://dvwij4jxpek4y" path="res://scripts/MiniGame Scripts/CardGame/opponenthand.gd" id="2_eu0ba"]
@@ -9,6 +9,44 @@
 [ext_resource type="PackedScene" uid="uid://djtn4c5j6la3y" path="res://scenes/MiniGames/Card Game/cardslot.tscn" id="6_s0mie"]
 [ext_resource type="PackedScene" uid="uid://cq4cwgdyf71b3" path="res://scenes/MiniGames/Card Game/opponentcardslot.tscn" id="7_b0aec"]
 [ext_resource type="Script" uid="uid://cwg6dvxr66ldo" path="res://scripts/MiniGame Scripts/CardGame/game_manager.gd" id="9_kqur3"]
+
+[sub_resource type="Animation" id="Animation_kqur3"]
+resource_name = "cut_in"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wavecrashcutin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7967059, 1.2979583, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1225, 250), Vector2(-13, 250), Vector2(-13, 250), Vector2(-1181, 250)]
+}
+
+[sub_resource type="Animation" id="Animation_0fdqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wavecrashcutin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1225, 250)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3kkyt"]
+_data = {
+&"RESET": SubResource("Animation_0fdqy"),
+&"cut_in": SubResource("Animation_kqur3")
+}
 
 [node name="Cardgame" type="Control"]
 layout_mode = 3
@@ -79,6 +117,112 @@ offset_bottom = -29.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Reveal"
+
+[node name="playervalues" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 843.0
+offset_top = 394.0
+offset_right = 1136.0
+offset_bottom = 487.0
+text = "Sum :
+No Bonus
+Total:"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="opponentvalues" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 107.0
+offset_right = 360.0
+offset_bottom = 200.0
+text = "Sum :
+No Bonus
+Total:"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Wavecrashcutin" type="ColorRect" parent="."]
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 649.0
+offset_top = -74.0
+offset_right = 1820.0005
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12156863, 0.54901963, 0.85490197, 0.654902)
+
+[node name="Wavecrashtext" type="RichTextLabel" parent="Wavecrashcutin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 37
+text = "WAVE CRASH TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3kkyt")
+}
+
+[node name="playerHealth" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 23
+
+[node name="background" type="ColorRect" parent="playerHealth"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0, 0.551754, 0.8602381, 1)
+
+[node name="ColorRect" type="ColorRect" parent="playerHealth/background"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 93.0
+offset_bottom = 50.0
+color = Color(0.19874957, 0.43629336, 0.7982894, 1)
+
+[node name="health" type="RichTextLabel" parent="playerHealth/background/ColorRect"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 84.0
+offset_bottom = 41.0
+theme_override_font_sizes/normal_font_size = 32
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="playerHealth/background"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 54.0
+offset_right = 93.0
+offset_bottom = 94.0
+color = Color(0.19874957, 0.43629336, 0.7982894, 1)
+
+[node name="Name" type="RichTextLabel" parent="playerHealth/background/ColorRect2"]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 40.0
+text = "Aoi"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="lmb_clicked" from="CardInputmanager" to="Cardmanager" method="_on_card_inputmanager_lmb_clicked"]
 [connection signal="lmb_released" from="CardInputmanager" to="Cardmanager" method="_on_card_inputmanager_lmb_released"]
