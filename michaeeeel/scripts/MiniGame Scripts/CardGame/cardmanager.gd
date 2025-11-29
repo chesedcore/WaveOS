@@ -1,5 +1,6 @@
 class_name CardManager
 extends Node2D
+const CARD_PLACE_1 = preload("uid://jplskukhes5o")
 
 const  COLL_MASK_CARD =1
 const  COLL_MASK_CARDSLOT =2
@@ -9,6 +10,7 @@ var card_being_dragged : Card
 var screen_size
 @onready var playerhand: Hand = $"../Playerhand"
 @onready var card_inputmanager: Node2D = $"../CardInputmanager"
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 var is_hovering_on_card = false
 
@@ -120,6 +122,8 @@ func finish_drag():
 		card_being_dragged.position = card_slot_found.position
 		card_being_dragged.z_index = 0
 		card_being_dragged.animation_player.play_backwards("flip")
+		audio_stream_player.stream = CARD_PLACE_1
+		audio_stream_player.play()
 		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 	else:
 		playerhand.add_card_to_hand(card_being_dragged)

@@ -1,13 +1,26 @@
 extends Node
+const CARD_PLACE_1 = preload("uid://jplskukhes5o")
+const CARD_SLIDE_1 = preload("uid://b6kd2mj8kk54x")
+const CARD_FAN_1 = preload("uid://5s8ivfuxhgpw")
+const SPLASH_1 = preload("uid://p6n6h5kj1rxa")
+const SPLASH_2 = preload("uid://4tkfj8jdkunk")
+
+
 @onready var playercardslots: Node2D = $"../Playercardslots"
 @onready var deck: Node2D = $"../Deck"
 @onready var playervalues: RichTextLabel = $"../playervalues"
 @onready var opponentvalues: RichTextLabel = $"../opponentvalues"
+@onready var gameovertext: RichTextLabel = $"../Gameover/VBoxContainer/gameovertext"
+@onready var gameover: ColorRect = $"../Gameover"
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 @onready var wavecrashtext: RichTextLabel = $"../Wavecrashcutin/Wavecrashtext"
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var health: RichTextLabel = $"../playerHealth/background/ColorRect/health"
+@onready var opponent_health: RichTextLabel = $"../opponenthealth/background/ColorRect/health"
+var game_end = false
 var current_health = 100
+var opponent_current_health = 100
 @onready var opponentcardslots: Node2D = $"../Opponentcardslots"
 @onready var opponenthand: Opponent_Hand = $"../Opponenthand"
 @onready var opponent_timer: Timer = $"../OpponentTimer"
@@ -25,13 +38,16 @@ func _process(delta: float) -> void:
 func oppnents_move():
 	choose_cards()
 	var i = 2
+	audio_stream_player.stream = CARD_PLACE_1
 	for cardslot :CardSlot in opponentcardslots.get_children():
 		opponent_timer.start()
 		await  opponent_timer.timeout
 		var chosen_card :Card= opponents_choosen_cards[i]
 		i -= 1
+		audio_stream_player.play()
 		opponenthand.animate_card_to_position(chosen_card,cardslot.position)
 		opponenthand.remove_card_from_hand(chosen_card)
+		
 		chosen_card.z_index -=1
 		
 		cardslot.card_in_slot = chosen_card
@@ -71,7 +87,9 @@ func check_card_slots ()->bool:
 func _on_button_pressed() -> void:
 	if check_card_slots():
 		$"../Button".disabled = true
+		audio_stream_player.stream = CARD_SLIDE_1
 		for i in range(3):
+			audio_stream_player.play()
 			playercardslots.get_children()[i].card_in_slot.animation_player.play("flip")
 			opponentcardslots.get_children()[i].card_in_slot.animation_player.play("flip")
 			opponent_timer.start()
@@ -112,12 +130,19 @@ func check_values():
 		player_bonus = 2
 		bonus_text = "Consecutive Bonus : x2\n"
 		
+	if playersum ==36:
+		player_bonus = 3
+		bonus_text = "Royals Bonus : x3\n"
 	player_values_text += bonus_text
 	
 	bonus_text = "No Bonus\n"
 	if is_consecutive_opponent:
 		opponent_bonus = 2
 		bonus_text = "Consecutive Bonus : x2\n"
+	if opponentsum ==36:
+		opponent_bonus = 3
+		bonus_text = "Royals Bonus : x3\n"
+
 	
 	opponents_values_text += bonus_text
 	var player_total = playersum * player_bonus
@@ -135,8 +160,10 @@ func check_values():
 	if player_total>opponent_total:
 		wavecrashtext.text = "YOU WON THE WAVE CRASH!"
 		animation_player.play("cut_in")
-		await player_wave_animation(playercardslots)
+		var damage = player_total - opponent_total
 		
+		await player_wave_animation(playercardslots)
+		inflict_Damage_To_Opponent(damage)
 		print("YOU WON THE WAVE CRASH" + str(player_total) +str(opponent_total))
 	elif  player_total == opponent_total:
 		
@@ -144,18 +171,26 @@ func check_values():
 		animation_player.play("cut_in")
 	else :
 		var damage = opponent_total - player_total
-		inflict_Damage_To_Player(damage)
+		
 		wavecrashtext.text = "YOU LOST THE WAVE CRASH!"
 		animation_player.play("cut_in")
 		await opponent_wave_animation(opponentcardslots)
+		inflict_Damage_To_Player(damage)
 		print("YOU LOST THE WAVE CRASH"  + str(player_total) +str(opponent_total))
-	reset_board()
+	if !game_end:
+		reset_board()
 
 func opponent_wave_animation(cardslots :Node2D):
+	audio_stream_player.stream = SPLASH_1
+	audio_stream_player.play()
 	var wave_tween = create_tween()
+	wave_tween.set_ease(Tween.EASE_OUT)
+	wave_tween.set_trans(Tween.TRANS_EXPO)
 	wave_tween.tween_property(cardslots,"position",Vector2(425,300),1)
 	wave_tween.tween_property(cardslots,"position",Vector2(-300,300),.75)
 	await wave_tween.finished
+	audio_stream_player.stream = SPLASH_2
+	audio_stream_player.play()
 	var reset = create_tween()
 	reset.tween_property(cardslots,"position",Vector2(0,0),.5)
 
@@ -171,10 +206,19 @@ func display_values():
 
 
 func player_wave_animation(cardslots: Node2D):
+	audio_stream_player.stream = SPLASH_1
+	audio_stream_player.play()
 	var wave_tween = create_tween()
+	wave_tween.set_ease(Tween.EASE_OUT)
+	wave_tween.set_trans(Tween.TRANS_EXPO)
+	
 	wave_tween.tween_property(cardslots,"position",Vector2(-350,-300),1)
+	
+	
 	wave_tween.tween_property(cardslots,"position",Vector2(350,-300),.75)
 	await wave_tween.finished
+	audio_stream_player.stream = SPLASH_2
+	audio_stream_player.play()
 	var reset = create_tween()
 	reset.tween_property(cardslots,"position",Vector2(0,0),.5)
 
@@ -190,11 +234,61 @@ func reset_board():
 	$"../Button".disabled = false
 	playervalues.visible_ratio =0.0
 	opponentvalues.visible_ratio = 0.0
+	audio_stream_player.stream = CARD_FAN_1
+	audio_stream_player.play()
 	deck.round_draw()
+	await audio_stream_player.finished
 	oppnents_move()
 	
 func inflict_Damage_To_Player(damage : int):
 	current_health = current_health - damage
 	if current_health < 0:
 		current_health = 0
+		lose_game()
 	health.text = str(current_health)
+func inflict_Damage_To_Opponent(damage : int):
+	opponent_current_health = opponent_current_health - damage
+	if opponent_current_health < 0:
+		win_game()
+		opponent_current_health = 0
+	opponent_health.text = str(opponent_current_health)
+
+func lose_game():
+	game_end = true
+	gameovertext.text = "YOU LOSE"
+	get_parent().lost_minigame.emit()
+	display_game_over()
+
+func win_game():
+	game_end = true
+	get_parent().won_minigame.emit()
+	gameovertext.text = "YOU WIN"
+	display_game_over()
+	
+func display_game_over():
+	var gameover_tween = create_tween()
+	gameover_tween.set_ease(Tween.EASE_IN_OUT)
+	gameover_tween.set_trans(Tween.TRANS_EXPO)
+	gameover_tween.tween_property(gameover,"position",Vector2(405,212),1)
+
+func _on_replay_pressed() -> void:
+	await remove_game_over()
+	game_end = false
+	
+	reset_game()
+
+func reset_game():
+	current_health = 100
+	health.text = str(current_health)
+	opponent_current_health = 100
+	opponent_health.text = str(opponent_current_health)
+	reset_board()
+
+
+
+func remove_game_over():
+	var gameover_tween = create_tween()
+	gameover_tween.set_ease(Tween.EASE_IN_OUT)
+	gameover_tween.set_trans(Tween.TRANS_EXPO)
+	gameover_tween.tween_property(gameover,"position",Vector2(405,720),1)
+	await gameover_tween.finished

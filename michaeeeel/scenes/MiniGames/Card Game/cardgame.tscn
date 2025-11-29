@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6cyngqmqe1o6"]
+[gd_scene load_steps=14 format=3 uid="uid://c6cyngqmqe1o6"]
 
 [ext_resource type="Script" uid="uid://b52dh0jy8mr4l" path="res://scripts/MiniGame Scripts/CardGame/cardgame.gd" id="1_vshwg"]
+[ext_resource type="Texture2D" uid="uid://db3y825rggn8c" path="res://assets/MiniGame Assets/Poker cards 1.3/Wavecrash-bg.jpg" id="2_0fdqy"]
 [ext_resource type="Script" uid="uid://dvwij4jxpek4y" path="res://scripts/MiniGame Scripts/CardGame/opponenthand.gd" id="2_eu0ba"]
 [ext_resource type="Script" uid="uid://ujbqgnh5xflw" path="res://scripts/MiniGame Scripts/CardGame/cardmanager.gd" id="2_s0mie"]
 [ext_resource type="Script" uid="uid://dnaiggupjhcj5" path="res://scripts/MiniGame Scripts/CardGame/card_inputmanager.gd" id="3_b0aec"]
@@ -9,6 +10,21 @@
 [ext_resource type="PackedScene" uid="uid://djtn4c5j6la3y" path="res://scenes/MiniGames/Card Game/cardslot.tscn" id="6_s0mie"]
 [ext_resource type="PackedScene" uid="uid://cq4cwgdyf71b3" path="res://scenes/MiniGames/Card Game/opponentcardslot.tscn" id="7_b0aec"]
 [ext_resource type="Script" uid="uid://cwg6dvxr66ldo" path="res://scripts/MiniGame Scripts/CardGame/game_manager.gd" id="9_kqur3"]
+
+[sub_resource type="Animation" id="Animation_0fdqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wavecrashcutin:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1225, 250)]
+}
 
 [sub_resource type="Animation" id="Animation_kqur3"]
 resource_name = "cut_in"
@@ -19,27 +35,12 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Wavecrashcutin:position")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7967059, 1.2979583, 2),
+"times": PackedFloat32Array(0, 0.6, 1.5, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1225, 250), Vector2(-13, 250), Vector2(-13, 250), Vector2(-1181, 250)]
-}
-
-[sub_resource type="Animation" id="Animation_0fdqy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wavecrashcutin:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1225, 250)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3kkyt"]
@@ -57,6 +58,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_vshwg")
+
+[node name="WavecrashBg" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(578, 325)
+texture = ExtResource("2_0fdqy")
 
 [node name="Opponenthand" type="Node2D" parent="."]
 script = ExtResource("2_eu0ba")
@@ -76,13 +82,13 @@ position = Vector2(169, 333)
 [node name="Playercardslots" type="Node2D" parent="."]
 
 [node name="Cardslot" parent="Playercardslots" instance=ExtResource("6_s0mie")]
-position = Vector2(423, 510)
+position = Vector2(423, 559)
 
 [node name="Cardslot2" parent="Playercardslots" instance=ExtResource("6_s0mie")]
-position = Vector2(557, 372)
+position = Vector2(557, 444.00003)
 
 [node name="Cardslot3" parent="Playercardslots" instance=ExtResource("6_s0mie")]
-position = Vector2(719, 440)
+position = Vector2(719, 397)
 
 [node name="Opponentcardslots" type="Node2D" parent="."]
 
@@ -91,10 +97,10 @@ position = Vector2(684, 80)
 
 [node name="Opponentcardslot2" parent="Opponentcardslots" instance=ExtResource("7_b0aec")]
 z_index = -4
-position = Vector2(557, 222)
+position = Vector2(557, 198)
 
 [node name="Opponentcardslot3" parent="Opponentcardslots" instance=ExtResource("7_b0aec")]
-position = Vector2(397.00003, 157)
+position = Vector2(397.00003, 254)
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("9_kqur3")
@@ -124,6 +130,8 @@ offset_left = 843.0
 offset_top = 394.0
 offset_right = 1136.0
 offset_bottom = 487.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Sum :
 No Bonus
 Total:"
@@ -136,6 +144,8 @@ offset_left = 67.0
 offset_top = 107.0
 offset_right = 360.0
 offset_bottom = 200.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Sum :
 No Bonus
 Total:"
@@ -152,7 +162,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 649.0
 offset_top = -74.0
-offset_right = 1820.0005
+offset_right = 1820.0051
 offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -220,10 +230,102 @@ color = Color(0.19874957, 0.43629336, 0.7982894, 1)
 layout_mode = 0
 offset_right = 85.0
 offset_bottom = 40.0
+text = "Ami"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="opponenthealth" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 23
+
+[node name="background" type="ColorRect" parent="opponenthealth"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+color = Color(0, 0.551754, 0.8602381, 1)
+
+[node name="ColorRect" type="ColorRect" parent="opponenthealth/background"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 93.0
+offset_bottom = 50.0
+color = Color(0.19874957, 0.43629336, 0.7982894, 1)
+
+[node name="health" type="RichTextLabel" parent="opponenthealth/background/ColorRect"]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 84.0
+offset_bottom = 41.0
+theme_override_font_sizes/normal_font_size = 32
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="opponenthealth/background"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 54.0
+offset_right = 93.0
+offset_bottom = 94.0
+color = Color(0.19874957, 0.43629336, 0.7982894, 1)
+
+[node name="Name" type="RichTextLabel" parent="opponenthealth/background/ColorRect2"]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 40.0
 text = "Aoi"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Gameover" type="ColorRect" parent="."]
+z_index = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = 396.0
+offset_right = 170.0
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29803923, 0.76862746, 1, 0.7137255)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameover"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 112.0
+grow_horizontal = 2
+
+[node name="gameovertext" type="RichTextLabel" parent="Gameover/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "GAME OVER TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Replay" type="Button" parent="Gameover/VBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+text = "Replay"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="lmb_clicked" from="CardInputmanager" to="Cardmanager" method="_on_card_inputmanager_lmb_clicked"]
 [connection signal="lmb_released" from="CardInputmanager" to="Cardmanager" method="_on_card_inputmanager_lmb_released"]
 [connection signal="pressed" from="Button" to="GameManager" method="_on_button_pressed"]
+[connection signal="pressed" from="Gameover/VBoxContainer/Replay" to="GameManager" method="_on_replay_pressed"]
