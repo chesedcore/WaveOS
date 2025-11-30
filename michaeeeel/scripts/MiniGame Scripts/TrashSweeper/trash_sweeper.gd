@@ -11,7 +11,7 @@ var grid = []
 @onready var healthcontainer: HBoxContainer = $Gamearea/uibackground/HBoxContainer/icon/ColorRect/healthcontainer
 
 var  hp = 3
-
+var gameend = false
 @onready var grid_container: GridContainer = $Gamearea/boardbackground/MarginContainer/GridContainer
 var first_move = true
 @onready var trashlabel: RichTextLabel = $Gamearea/uibackground/HBoxContainer/TrashCount/trashlabel
@@ -21,7 +21,19 @@ var time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	gane_setup()
+
+func gane_setup():
+	mines_left = MAX_MINES
+	flags_left = MAX_MINES
+	trashlabel.text = str(mines_left)
+	
+	hp = 3
+	for i in range(hp):
+		healthcontainer.get_children()[i].visible = true
+	time = 0
 	trashlabel.text =str(mines_left)
+	grid.resize(0)
 	await setupGrid()
 	place_trash()
 
@@ -161,11 +173,17 @@ func on_unmarked(has_trash : bool):
 		mines_left+=1
 	trashlabel.text = str(flags_left)
 
-
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("jump_launch") and gameend == true:
+		gameend = false
+		gameovermsg.visible = false
+		await delete_all_cells()
+		gane_setup()
 
 func lose_game():
 	clearAllCells()
-	gameovermsg.text = "GAME OVER"
+	gameovermsg.text = "GAME OVER \nPress Space to play again"
+	gameend = true
 	gameovermsg.visible = true
 	first_move = true
 	lost_minigame.emit()
@@ -176,8 +194,15 @@ func clearAllCells():
 			grid[row][col].cleared = true
 			if grid[row][col].is_trash == true:
 				grid[row][col].color =  Color( 0,0,0,)
+			
+func delete_all_cells():
+	for row in range(ROWS): 
+		for col in range(COLS):
+			
+			grid[row][col].queue_free()
 
 
 func wingame():
+	gameend = true
 	gameovermsg.visible = true
 	won_minigame.emit()

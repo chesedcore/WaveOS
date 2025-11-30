@@ -137,6 +137,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="Window/MarginContainer/FlowDown/PanelContainer/SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(818, 491)
 size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true

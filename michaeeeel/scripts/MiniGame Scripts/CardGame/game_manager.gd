@@ -11,7 +11,7 @@ const SPLASH_2 = preload("uid://4tkfj8jdkunk")
 @onready var playervalues: RichTextLabel = $"../playervalues"
 @onready var opponentvalues: RichTextLabel = $"../opponentvalues"
 @onready var gameovertext: RichTextLabel = $"../Gameover/VBoxContainer/gameovertext"
-@onready var gameover: ColorRect = $"../Gameover"
+@onready var gameover: NinePatchRect = $"../Gameover"
 @onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 @onready var wavecrashtext: RichTextLabel = $"../Wavecrashcutin/Wavecrashtext"
@@ -26,8 +26,6 @@ var opponent_current_health = 100
 @onready var opponent_timer: Timer = $"../OpponentTimer"
 var opponents_choosen_cards = [] 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	oppnents_move()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -108,9 +106,11 @@ func check_values():
 	var opponents_values_text : String
 	var is_consecutive_player = true
 	var is_consecutive_opponent = true
+	
 	for i in range(3):
 		if i >0 and (playercardslots.get_children()[i].card_in_slot.value <= playercardslots.get_children()[i-1].card_in_slot.value ):
 			playersum = 0
+			
 			is_consecutive_player = false
 		else :
 			playersum += playercardslots.get_children()[i].card_in_slot.value
@@ -146,12 +146,12 @@ func check_values():
 	
 	opponents_values_text += bonus_text
 	var player_total = playersum * player_bonus
-	player_values_text += str(player_total)
+	player_values_text += "Total: "+str(player_total)
 	
 	
 	
 	var opponent_total = opponentsum * opponent_bonus
-	opponents_values_text += str(opponent_total)
+	opponents_values_text +="Total: "+ str(opponent_total)
 	playervalues.text = player_values_text
 	opponentvalues.text = opponents_values_text
 	await display_values()
@@ -242,13 +242,13 @@ func reset_board():
 	
 func inflict_Damage_To_Player(damage : int):
 	current_health = current_health - damage
-	if current_health < 0:
+	if current_health <= 0:
 		current_health = 0
 		lose_game()
 	health.text = str(current_health)
 func inflict_Damage_To_Opponent(damage : int):
 	opponent_current_health = opponent_current_health - damage
-	if opponent_current_health < 0:
+	if opponent_current_health <= 0:
 		win_game()
 		opponent_current_health = 0
 	opponent_health.text = str(opponent_current_health)
@@ -292,3 +292,10 @@ func remove_game_over():
 	gameover_tween.set_trans(Tween.TRANS_EXPO)
 	gameover_tween.tween_property(gameover,"position",Vector2(405,720),1)
 	await gameover_tween.finished
+
+
+func _on_play_pressed() -> void:
+	$"../tutorial".visible = false
+	await deck.round_draw()
+	deck.round_draw()
+	oppnents_move()
