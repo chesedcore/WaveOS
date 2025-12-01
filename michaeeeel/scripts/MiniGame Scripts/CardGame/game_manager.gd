@@ -1,9 +1,9 @@
 extends Node
-const CARD_PLACE_1 = preload("uid://jplskukhes5o")
-const CARD_SLIDE_1 = preload("uid://b6kd2mj8kk54x")
-const CARD_FAN_1 = preload("uid://5s8ivfuxhgpw")
-const SPLASH_1 = preload("uid://p6n6h5kj1rxa")
-const SPLASH_2 = preload("uid://4tkfj8jdkunk")
+const CARD_PLACE_1 = preload("res://assets/MiniGame Assets/Poker cards 1.3/card-place-1.ogg")
+const CARD_SLIDE_1 = preload("res://assets/MiniGame Assets/Poker cards 1.3/card-slide-1.ogg")
+const CARD_FAN_1 = preload("res://assets/MiniGame Assets/Poker cards 1.3/card-fan-1.ogg")
+const SPLASH_1 = preload("res://assets/MiniGame Assets/Poker cards 1.3/splash1.wav")
+const SPLASH_2 = preload("res://assets/MiniGame Assets/Poker cards 1.3/splash2.wav")
 
 
 @onready var playercardslots: Node2D = $"../Playercardslots"

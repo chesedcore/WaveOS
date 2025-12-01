@@ -2,7 +2,7 @@ extends Minigame
 
 const ROWS :int = 16
 const COLS: int = 16
-const CELL = preload("uid://c5qmmupokoihw")
+const CELL = preload("res://scenes/MiniGames/TrashSweeper/cell.tscn")
 const  MAX_MINES = 40
 var mines_left = MAX_MINES
 var flags_left = MAX_MINES

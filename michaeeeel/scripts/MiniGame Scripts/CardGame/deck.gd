@@ -3,8 +3,8 @@ extends Node2D
 @onready var playerhand: Hand = $"../Playerhand"
 @onready var opponenthand: Opponent_Hand = $"../Opponenthand"
 
-const CARD = preload("uid://d36vamsycohxs")
-const OPPONENTCARD = preload("uid://dp4dkttvsfcmk")
+const CARD = preload("res://scenes/MiniGames/Card Game/card.tscn")
+const OPPONENTCARD = preload("res://scenes/MiniGames/Card Game/opponentcard.tscn")
 
 var deck = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13]
 # Called when the node enters the scene tree for the first time.

@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func spawn_octo() -> void:
 	var spawn_point = path_2d.curve.get_point_position(randi_range(0, (path_2d.curve.point_count - 1)))
-	const OCTOS = preload("uid://cnacntis1qwrx")
+	const OCTOS = preload("res://scenes/MiniGames/Beach Breaker/octos.tscn")
 	var octo_inst: Octopus = OCTOS.instantiate()
 	octos_node.add_child(octo_inst)
 	octo_inst.speed += level_speed
@@ -41,7 +41,7 @@ func _on_lose_area_area_entered(area: Area2D) -> void:
 		
 
 func reset_ball():
-	const BREAKER_PLAYER = preload("uid://iy6s2au50nfs")
+	const BREAKER_PLAYER = preload("res://scenes/MiniGames/Beach Breaker/breaker_player.tscn")
 	var breaker_player_inst = BREAKER_PLAYER.instantiate()
 	self.call_deferred("add_child", breaker_player_inst)
 	breaker_player_inst.global_position = current_player.global_position

@@ -13,7 +13,7 @@ signal marked
 signal unmarked
 @onready var icon: TextureRect = $icon
 
-const GOALMARKER = preload("uid://yd05n6wuwd5b")
+const GOALMARKER = preload("res://assets/MiniGame Assets/TrashSweeper/goalmarker.png")
 
 
 

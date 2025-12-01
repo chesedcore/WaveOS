@@ -1,6 +1,6 @@
 class_name CardManager
 extends Node2D
-const CARD_PLACE_1 = preload("uid://jplskukhes5o")
+const CARD_PLACE_1 = preload("res://assets/MiniGame Assets/Poker cards 1.3/card-place-1.ogg")
 
 const  COLL_MASK_CARD =1
 const  COLL_MASK_CARDSLOT =2
