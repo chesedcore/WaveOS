@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4j4qf1dfbfp3"]
+
+[ext_resource type="Script" uid="uid://cyd73vognhw61" path="res://scripts/utils/notif.gd" id="1_40ti2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i7xe"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 12
+
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("username", "textbox")]
+custom_minimum_size = Vector2(0, 120)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i7xe")
+script = ExtResource("1_40ti2")
+username = NodePath("VBoxContainer/Username")
+textbox = NodePath("VBoxContainer/MarginContainer/Textbox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Username" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "Insert some cool ass anime name here idk"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Textbox" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+fit_content = true
+vertical_alignment = 1

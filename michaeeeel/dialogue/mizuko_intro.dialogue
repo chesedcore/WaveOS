@@ -1,0 +1,163 @@
+~ start
+do mizuko_morph.emit("eyes_closed")
+Mizuko: Mmm...
+do mizuko_morph.emit("surprised")
+Mizuko: Huh, Ami?
+do mizuko_morph.emit("happy")
+Mizuko: Ahh! Ami!! (˶˃ ᵕ ˂˶) you're here!!
+Mizuko: It's been... calculating...
+Mizuko: ...4393 days since you last logged in!
+Mizuko: That's over half my whole existence!
+do mizuko_morph.emit("sad")
+Mizuko: I... missed you while you were gone.
+do mizuko_morph.emit("happy")
+Mizuko: But! I’m so glad you opened OceanOS again! Welcome back, my sailor friend!
+Mizuko: Let's get sailing again! (˶˃ ᵕ ˂˶)
+
+- I missed you too, Mizuko.
+	Mizuko: I know you did. I always know.
+- You kept track?
+	Mizuko: Course I did! I keep tally.
+- I'm sorry...
+	Mizuko: It's okay... you didn't mean it. I know.
+	Mizuko: You apologised and that's what matters~
+
+Mizuko: You're here now, and that's what matters!
+Mizuko: So~ since it's been a while, let me remind you how everything works, okay?
+
+~ tutorial
+do mizuko_morph.emit("neutral")
+Mizuko: First, open your [color=green]Messenger[/color] app. It's how you talked to Marina back then!
+Mizuko: Go ahead, open it up. I'll wait.
+do spin_until_app_opened("Messenger")
+Mizuko: Oh, you did!
+do mizuko_morph.emit("sad")
+Mizuko: As you can see, it's a bit empty right now...
+do mizuko_morph.emit("neutral")
+Mizuko: No new conversations... yet.
+do mizuko_morph.emit("happy")
+Mizuko: But some of your old messages might still be recoverable! I'll try to recover them in the background...
+Mizuko: Now, close the messenger if you haven't, and take a look at [color=green]cat.jpg[/color]!
+do Bus.add_icon.emit("res://scenes/icons/cat_image_icon.tscn")
+do spin_until_image_viewed("cat.jpg")
+
+Mizuko: Aww, that picture~ You stored it here when you were little!
+Mizuko: ...you used to name every cat you saw.
+
+- I remember taking this.
+	Mizuko: I do too.
+	Mizuko: Hmm, what's with that expression?
+- I was obsessed with cats. I still really like them.
+	Mizuko: Heh, Marina used to tell me all about your cat loving self back then~
+- Don't tease me, Mizuko.
+	Mizuko: Aww, why not~?
+
+Mizuko: Either way~ I think it's really cute!
+
+~ upgrades
+
+do mizuko_morph.emit("neutral")
+Mizuko: Oh, I can converse more freely than before now~ y'know?
+Mizuko: And, well! I might've added more functions to my library while you were gone~
+
+- You updated? I never coded you that advanced...
+	Mizuko: Mhm! I'm smarter than ever now~
+- You're smarter than you used to be... way smarter.
+	Mizuko: Of course! I couldn't spend all this time doing nothing, y'know~?
+- While I was gone? Smart girl.
+	Mizuko: Hehe, of course~ You coded me to be that way!
+
+do mizuko_morph.emit("embarassed")
+Mizuko: I learnt new libraries, patched some old code you'd written...
+Mizuko: And, um, taught myself how to think better.
+do mizuko_morph.emit("happy")
+Mizuko: I also improved the predictive choices for you!
+Mizuko: Idle years make good time for self improvement!  (๑•ᴗ•๑)
+do mizuko_morph.emit("neutral")
+Mizuko: But... there are complications. You started OceanOS in 2007...
+Mizuko: And your modern computer isn't fully compatible with this OS anymore.
+Mizuko: Some functions and applications, like some of the games here, are a bit broken!
+do mizuko_morph.emit("worried")
+Mizuko: I'm fixing them! Slowly. (｡•́︿•̀｡)
+do mizuko_morph.emit("sad")
+Mizuko: But! I just recovered some of your old messages! You can read some of your chat history now in the [color=blue]Logs![/color]
+do Bus.add_icon.emit("res://scenes/icons/log_0x001_icon.tscn")
+do spin_until_log_viewed("log_0x001")
+
+~ access_old_chats
+do mizuko_morph.emit("eyes_closed")
+Mizuko: You and Marina were really close. You talked about everything.
+do mizuko_morph.emit("neutral")
+Mizuko: ...you opened OceanOS again after all this time. That means something, right?
+
+- I missed this project... and her.
+	Mizuko: Mizuko understands~ I always knew you'd come back.
+- I wanted to see what we made back then again.
+	Mizuko: I have a feeling there's some more subtext to what you're feeling right now~
+- It just felt right to come back.
+	Mizuko: The universe works in mysterious ways, doesn't it, Ami?
+
+do mizuko_morph.emit("happy")
+Mizuko: But I'm glad you came back regardless~
+
+~ marina_chat
+
+do Data.unlock_chat(Data.marina_day_one_chat)
+
+do mizuko_morph.emit("surprised")
+Mizuko: Did you see that? You have a new message!
+Mizuko: Can you believe it? Go check!
+
+do spin_until_nonpropagating_event_id("talked_to_marina_day_one")
+
+do mizuko_morph.emit("worried")
+Mizuko: Woah, Marina actually talked to you?
+Mizuko: That's strange...
+Mizuko: She messaged on the exact same day you returned.
+do mizuko_morph.emit("glitch_1")
+Mizuko: Statistically unlikely by a factor of-- thread 'main' panicked!
+do mizuko_morph.emit("glitch_2")
+Mizuko: called `Result::unwrap()` on an `Err` value
+do mizuko_morph.emit("glitch_3")
+Mizuko: ##PROC: Return-Delta: 4383.44
+do mizuko_morph.emit("eyes_closed")
+- What's wrong? What's with the numbers?
+	Mizuko: Numbers? Did something go wrong?
+- Too much data?
+	Mizuko: Hmm? Data? Checking buffer statuses...
+- Everything okay?
+	Mizuko: E-eh? What went wrong? I'm okay!
+
+do mizuko_morph.emit("embarassed")
+Mizuko: Oh! Uh. Just a tiny bug. Probably from old code.
+do mizuko_morph.emit("neutral")
+Mizuko: Nothing to worry about! Promise!
+
+~ minigame_sequence
+
+do mizuko_morph.emit("happy")
+Mizuko: O-oh! Anyway, you can try playing games in the OS while I perform some upgrades!
+do spin_until_anything_closes()
+Mizuko: Oh, right, there's a few games around, try one out!
+Mizuko: Have fun! Enjoy yourself~
+do Bus.add_icon.emit("res://scenes/icons/sea_snake_icon.tscn")
+do Bus.add_icon.emit("res://scenes/icons/beach_breaker_icon.tscn")
+do Bus.add_icon.emit("res://scenes/icons/trashsweeper_icon.tscn")
+do spin_until_anything_closes()
+
+Mizuko: Oh, I did a few repairs on the OS while you were gone~
+Mizuko: System integrity improving already!
+Mizuko: It really feels like the old days again!
+
+- Low battery. I'll have to see you tomorrow.
+
+~ end_day_one
+
+
+Mizuko: Sure thing!~ I'll be waiting, sailor friend~
+Mizuko: I'll be right here when you come back!
+Mizuko: Goodnight, sleep tight~
+do mizuko_morph.emit("sad")
+Mizuko: ...and don't forget me again.
+
+do day_one_sequence_finished.emit()

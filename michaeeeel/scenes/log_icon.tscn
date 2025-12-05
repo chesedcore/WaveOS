@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://ovtn2vqkghx0"]
+
+[ext_resource type="Script" uid="uid://bwtigr4t5qajt" path="res://scripts/utils/log_icon.gd" id="1_sf6oa"]
+[ext_resource type="Texture2D" uid="uid://ckubsrq20h0nr" path="res://assets/comment.png" id="2_8lakq"]
+[ext_resource type="Shader" uid="uid://burwhdjxj6lv7" path="res://shadercode/floaty_fuck.gdshader" id="3_8lakq"]
+[ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="3_dasrb"]
+[ext_resource type="Script" uid="uid://c7y7n206o4ryn" path="res://scripts/ui/floaty_fuck.gd" id="4_8lakq"]
+
+[sub_resource type="Resource" id="Resource_6235h"]
+script = ExtResource("3_dasrb")
+name = "log_0x001"
+icon = ExtResource("2_8lakq")
+program = "doesnt_matter"
+dupeable = true
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ie87k"]
+resource_local_to_scene = true
+shader = ExtResource("3_8lakq")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="LogIcon" type="MarginContainer" node_paths=PackedStringArray("icon_rect", "name_label")]
+custom_minimum_size = Vector2(148, 0)
+anchors_preset = -1
+anchor_right = 0.12847222
+anchor_bottom = 0.22685185
+offset_right = -148.0
+offset_bottom = -147.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_sf6oa")
+program_res = SubResource("Resource_6235h")
+icon_rect = NodePath("FlowDown/Icon")
+name_label = NodePath("FlowDown/Name")
+log_dialogue = null
+timestamp_str = null
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowDown" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="FlowDown"]
+material = SubResource("ShaderMaterial_ie87k")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_8lakq")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_8lakq")
+
+[node name="Name" type="RichTextLabel" parent="FlowDown"]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "log_0x001"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="FlowDown/Icon" to="FlowDown/Icon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="FlowDown/Icon" to="FlowDown/Icon" method="_on_mouse_exited"]

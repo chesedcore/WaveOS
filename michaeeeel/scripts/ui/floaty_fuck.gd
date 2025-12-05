@@ -1,5 +1,7 @@
 class_name FloatyFuck extends TextureRect
 
+@export var fallback_rect_size := Vector2.ZERO
+
 const MAX_ROT = 17.0  #degrees of tilt
 const SMOOTHNESS = 8.0
 const FLOAT_SPEED = 1.5  #how fast it idly floats

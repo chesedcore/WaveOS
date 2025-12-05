@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlcnmiwihlnb7"]
+[gd_scene load_steps=5 format=3 uid="uid://dlcnmiwihlnb7"]
 
 [ext_resource type="Script" uid="uid://c6avpcum2lagb" path="res://core/auto/data.gd" id="1_a5mb1"]
 [ext_resource type="Resource" uid="uid://xrinany8u1mo" path="res://res/protagonist.tres" id="2_7frtm"]
+[ext_resource type="Resource" uid="uid://bubrh7ae8efec" path="res://res/ami.tres" id="3_uyhcy"]
+[ext_resource type="Resource" uid="uid://bc4nye8gupmqs" path="res://res/marina.tres" id="4_7khn2"]
 
 [node name="Data" type="Node"]
 script = ExtResource("1_a5mb1")
 protagonist_user = ExtResource("2_7frtm")
+ami = ExtResource("3_uyhcy")
+marina = ExtResource("4_7khn2")

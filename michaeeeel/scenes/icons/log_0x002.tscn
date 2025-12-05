@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgxg1fn28nha5"]
+
+[ext_resource type="Script" uid="uid://bwtigr4t5qajt" path="res://scripts/utils/log_icon.gd" id="1_bedj2"]
+[ext_resource type="Texture2D" uid="uid://ckubsrq20h0nr" path="res://assets/comment.png" id="2_jt4yv"]
+[ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="3_knl1f"]
+[ext_resource type="Shader" uid="uid://burwhdjxj6lv7" path="res://shadercode/floaty_fuck.gdshader" id="4_mrrbn"]
+[ext_resource type="Script" uid="uid://c7y7n206o4ryn" path="res://scripts/ui/floaty_fuck.gd" id="5_j23eq"]
+
+[sub_resource type="Resource" id="Resource_bp7kc"]
+script = ExtResource("3_knl1f")
+name = "log_0x002"
+icon = ExtResource("2_jt4yv")
+program = "doesnt_matter"
+dupeable = true
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8u01"]
+resource_local_to_scene = true
+shader = ExtResource("4_mrrbn")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="LogIcon" type="MarginContainer" node_paths=PackedStringArray("icon_rect", "name_label")]
+custom_minimum_size = Vector2(148, 0)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_bedj2")
+program_res = SubResource("Resource_bp7kc")
+icon_rect = NodePath("FlowDown/Icon")
+name_label = NodePath("FlowDown/Name")
+log_dialogue = "uid://knu8s4falav5"
+timestamp_str = "Summer 2007"
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowDown" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="FlowDown"]
+material = SubResource("ShaderMaterial_o8u01")
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_jt4yv")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("5_j23eq")
+
+[node name="Name" type="RichTextLabel" parent="FlowDown"]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "log_0x002"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="FlowDown/Icon" to="FlowDown/Icon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="FlowDown/Icon" to="FlowDown/Icon" method="_on_mouse_exited"]

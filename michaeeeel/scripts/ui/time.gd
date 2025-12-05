@@ -5,7 +5,7 @@ class_name TaskTime extends RichTextLabel
 func _update_time() -> void:
 	var now := Time.get_datetime_dict_from_system()
 	self.text = str(now["hour"]) + ":" + str(now["minute"]) + ":" + str(now["second"])
-	#print("Time now is... " + text)
+	Data.systime = self.text
 
 func _ready() -> void:
 	timer.timeout.connect(_update_time)

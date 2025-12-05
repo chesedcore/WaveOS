@@ -1,12 +1,18 @@
-[gd_scene format=3 uid="uid://jp133k8cknyo"]
+[gd_scene load_steps=2 format=3 uid="uid://jp133k8cknyo"]
 
-[node name="Master" type="Control"]
+[ext_resource type="Script" uid="uid://dddolod84o1qt" path="res://core/master.gd" id="1_l4f7p"]
+
+[node name="Master" type="Control" node_paths=PackedStringArray("game_dock", "transition_dock", "fade_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_l4f7p")
+game_dock = NodePath("Game")
+transition_dock = NodePath("Transitions")
+fade_rect = NodePath("Transitions/ColorRect")
 
 [node name="Game" type="Control" parent="."]
 layout_mode = 1
@@ -24,3 +30,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Transitions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

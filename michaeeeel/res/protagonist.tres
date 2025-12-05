@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="User" load_steps=3 format=3 uid="uid://xrinany8u1mo"]
 
 [ext_resource type="Script" uid="uid://q6xwpaelgto4" path="res://core/user.gd" id="1_6s10c"]
-[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_qxvb2"]
+[ext_resource type="Texture2D" uid="uid://caqq5vaab7duf" path="res://assets/icons/ami.webp" id="1_qxvb2"]
 
 [resource]
 script = ExtResource("1_6s10c")
-username = "Mike Hawk"
+username = "Ami"
 pfp = ExtResource("1_qxvb2")
 metadata/_custom_type_script = "uid://q6xwpaelgto4"

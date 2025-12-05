@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="WaveOS"
-run/main_scene="uid://h4l48cwtgiwe"
+config/name="OceanOS"
+run/main_scene="uid://jp133k8cknyo"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/image="uid://bsw68k17jemb4"
 config/icon="res://icon.svg"
@@ -29,7 +29,8 @@ gdscript/warnings/unused_signal=0
 
 [dialogue_manager]
 
-runtime/state_autoload_shortcuts=["Data", "Gamestate"]
+runtime/state_autoload_shortcuts=["Data", "Gamestate", "Bus"]
+runtime/balloon_path="res://scenes/utility/mizukochan/balloon.tscn"
 
 [display]
 
@@ -50,6 +51,10 @@ folder_colors={
 "res://scripts/": "red",
 "res://shadercode/": "purple"
 }
+
+[gui]
+
+theme/custom_font="uid://ckfdo8q3g23te"
 
 [input]
 
@@ -90,7 +95,7 @@ test_case_switch={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/test.dialogue", "res://dialogue/mizuko_intro.dialogue", "res://dialogue/day1_1.dialogue", "res://dialogue/marina_live_day1.dialogue", "res://dialogue/mizuko_two.dialogue", "res://dialogue/day2_1.dialogue")
 
 [layer_names]
 

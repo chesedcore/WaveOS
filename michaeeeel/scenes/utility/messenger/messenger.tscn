@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://jyw2uyrb313"]
+[gd_scene load_steps=14 format=3 uid="uid://jyw2uyrb313"]
 
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_jpulm"]
 [ext_resource type="Script" uid="uid://big0lpgrccuef" path="res://scripts/utils/messenger.gd" id="1_o8v34"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="2_ecp82"]
 [ext_resource type="PackedScene" uid="uid://nqylh2fqs7hs" path="res://scenes/utility/messenger/messenger_scroll_icon.tscn" id="4_a4jdx"]
-[ext_resource type="PackedScene" uid="uid://cg3dptwmis85o" path="res://scenes/utility/messenger/message.tscn" id="4_o8v34"]
-[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="5_wagcu"]
+[ext_resource type="Texture2D" uid="uid://dfqxpqdkkr1lk" path="res://assets/icons/marina.webp" id="5_a4jdx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2kmb"]
 bg_color = Color(0, 0, 0, 1)
@@ -52,7 +51,7 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[node name="Messenger" type="Control" node_paths=PackedStringArray("message_dock", "choice_dock")]
+[node name="Messenger" type="Control" node_paths=PackedStringArray("message_dock", "choice_dock", "scrollbar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,6 +62,7 @@ script = ExtResource("1_o8v34")
 message_dock = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SmoothScrollContainer/MessageDock")
 choice_dock = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/ChoiceDock")
 dialogue_file = "uid://bpfuaet1sliur"
+scrollbar = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SmoothScrollContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -126,7 +126,7 @@ size_flags_vertical = 3
 
 [node name="ScrollIcon" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/IconScroller/SmoothScrollContainer/Icons" instance=ExtResource("4_a4jdx")]
 layout_mode = 2
-texture = ExtResource("5_wagcu")
+texture = ExtResource("5_a4jdx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -146,9 +146,6 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Message" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/SmoothScrollContainer/MessageDock" instance=ExtResource("4_o8v34")]
-layout_mode = 2
 
 [node name="ChoiceDock" type="PanelContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

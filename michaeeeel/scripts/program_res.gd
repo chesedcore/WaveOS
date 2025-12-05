@@ -11,3 +11,4 @@ signal visuals_changed
 		icon = val
 		visuals_changed.emit()
 @export_file("*.tscn") var program: String
+@export var dupeable: bool = false

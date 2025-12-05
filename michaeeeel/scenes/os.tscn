@@ -1,69 +1,28 @@
-[gd_scene load_steps=21 format=3 uid="uid://h4l48cwtgiwe"]
+[gd_scene load_steps=17 format=3 uid="uid://h4l48cwtgiwe"]
 
 [ext_resource type="Texture2D" uid="uid://ddacovx0gpo4n" path="res://assets/bliss.jpg" id="1_jqvav"]
+[ext_resource type="Script" uid="uid://c0rrid3kmxxth" path="res://scripts/utils/os.gd" id="1_ldvm6"]
 [ext_resource type="Script" uid="uid://dcevx0ghdvstp" path="res://scripts/screen_handler.gd" id="2_nd5ct"]
 [ext_resource type="Script" uid="uid://dbux11tjp7vmi" path="res://scripts/ui/better_grid_container.gd" id="2_yp4ya"]
 [ext_resource type="Shader" uid="uid://2vk0mfq3l1sa" path="res://shadercode/crtshader.gdshader" id="3_fxvci"]
-[ext_resource type="PackedScene" uid="uid://bxu1giuebiy7r" path="res://scenes/program_icon.tscn" id="3_yp4ya"]
+[ext_resource type="Resource" uid="uid://bupjqicjxq7l7" path="res://res/media_viewer.tres" id="4_14m1s"]
 [ext_resource type="PackedScene" uid="uid://dqqqaoq4a3qxj" path="res://scenes/taskbar.tscn" id="4_72ne2"]
-[ext_resource type="Texture2D" uid="uid://r5mrh46gsg7u" path="res://assets/MiniGame Assets/BeachBreaker/Octopus.png" id="5_7pos1"]
 [ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="5_nvlvj"]
-[ext_resource type="Texture2D" uid="uid://iwiq80ahwwln" path="res://assets/terminal.png" id="7_5hobq"]
+[ext_resource type="Resource" uid="uid://bkwvm1iiogd6a" path="res://res/log_viewer.tres" id="6_3361g"]
 [ext_resource type="Resource" uid="uid://blbr13ghylofl" path="res://res/messenger.tres" id="8_8i7xe"]
-[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="8_s2aqv"]
-[ext_resource type="Texture2D" uid="uid://babcjp7hj1j5j" path="res://assets/MiniGame Assets/WaveOS/WaveOsLogoPixel.png" id="9_8i7xe"]
+[ext_resource type="PackedScene" uid="uid://dgeeaa3hxobjs" path="res://scenes/icons/messenger_icon.tscn" id="8_cd0u5"]
+[ext_resource type="Texture2D" uid="uid://doqtinljnpe2o" path="res://assets/icons/messenger.webp" id="9_cd0u5"]
+[ext_resource type="Script" uid="uid://bqhv07u74bv10" path="res://scripts/utils/next_day_button.gd" id="12_cd0u5"]
 
-[sub_resource type="Resource" id="Resource_8i7xe"]
+[sub_resource type="Resource" id="Resource_14m1s"]
 resource_local_to_scene = true
 script = ExtResource("5_nvlvj")
-name = "Terminal"
-icon = ExtResource("7_5hobq")
-program = "uid://bcrdvyyqj26e1"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
-
-[sub_resource type="Resource" id="Resource_ldvm6"]
-resource_local_to_scene = true
-script = ExtResource("5_nvlvj")
-name = "Beach Breaker"
-icon = ExtResource("5_7pos1")
-program = "uid://craqbkxhbmer8"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
-
-[sub_resource type="Resource" id="Resource_joci4"]
-resource_local_to_scene = true
-script = ExtResource("5_nvlvj")
-name = "Ballscord"
-icon = ExtResource("8_s2aqv")
+name = "Messenger"
+icon = ExtResource("9_cd0u5")
 program = "uid://jyw2uyrb313"
 metadata/_custom_type_script = "uid://c3bj2gfj3quip"
 
-[sub_resource type="Resource" id="Resource_cd0u5"]
-script = ExtResource("5_nvlvj")
-name = "Beach Pinball"
-icon = ExtResource("9_8i7xe")
-program = "uid://cjr6ik84gn0x5"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
-
-[sub_resource type="Resource" id="Resource_14m1s"]
-script = ExtResource("5_nvlvj")
-name = "TrashSweeper"
-icon = ExtResource("8_s2aqv")
-program = "uid://bshmoua7s444t"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
-
-[sub_resource type="Resource" id="Resource_bp7kc"]
-script = ExtResource("5_nvlvj")
-name = "Seasnake"
-icon = ExtResource("8_s2aqv")
-program = "uid://cardnytx4ta23"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
-
-[sub_resource type="Resource" id="Resource_nto4e"]
-script = ExtResource("5_nvlvj")
-name = "Card Game"
-icon = ExtResource("8_s2aqv")
-program = "uid://c6cyngqmqe1o6"
-metadata/_custom_type_script = "uid://c3bj2gfj3quip"
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8i7xe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp4ya"]
 resource_local_to_scene = true
@@ -82,13 +41,15 @@ shader_parameter/warp_amount = 0.01
 shader_parameter/vignette_intensity = 0.2
 shader_parameter/vignette_opacity = 0.250000011875
 
-[node name="OS" type="Control"]
+[node name="OS" type="Control" node_paths=PackedStringArray("desktop")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ldvm6")
+desktop = NodePath("ScreenHandler/Screen/Desktop")
 metadata/_edit_lock_ = true
 
 [node name="BG" type="TextureRect" parent="."]
@@ -102,7 +63,7 @@ mouse_filter = 2
 texture = ExtResource("1_jqvav")
 metadata/_edit_lock_ = true
 
-[node name="ScreenHandler" type="Control" parent="." node_paths=PackedStringArray("program_dock", "bottom_bar")]
+[node name="ScreenHandler" type="Control" parent="." node_paths=PackedStringArray("program_dock", "bottom_bar", "notif_dock", "mizuko_tether")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,8 +73,12 @@ grow_vertical = 2
 script = ExtResource("2_nd5ct")
 program_dock = NodePath("ProgramDock")
 bottom_bar = NodePath("Screen/Taskbar")
+notif_dock = NodePath("NotifsDock")
+mizuko_tether = NodePath("MizukoTether")
 program_count_limit = 12
 messenger_res = ExtResource("8_8i7xe")
+media_viewer_res = ExtResource("4_14m1s")
+log_viewer_res = ExtResource("6_3361g")
 metadata/_edit_lock_ = true
 
 [node name="Screen" type="VBoxContainer" parent="ScreenHandler"]
@@ -133,33 +98,9 @@ mouse_filter = 2
 script = ExtResource("2_yp4ya")
 metadata/_edit_lock_ = true
 
-[node name="Terminal" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
-layout_mode = 2
-program_res = SubResource("Resource_8i7xe")
-
-[node name="BeachBreaker" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
-layout_mode = 2
-program_res = SubResource("Resource_ldvm6")
-
-[node name="Ballscord" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
-layout_mode = 2
-program_res = SubResource("Resource_joci4")
-
-[node name="BeachPinball" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
-layout_mode = 2
-program_res = SubResource("Resource_cd0u5")
-
-[node name="Trashsweeper" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
+[node name="Ballscord" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("8_cd0u5")]
 layout_mode = 2
 program_res = SubResource("Resource_14m1s")
-
-[node name="SeaSnake" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
-layout_mode = 2
-program_res = SubResource("Resource_bp7kc")
-
-[node name="CardGame" parent="ScreenHandler/Screen/Desktop" instance=ExtResource("3_yp4ya")]
-layout_mode = 2
-program_res = SubResource("Resource_nto4e")
 
 [node name="Taskbar" parent="ScreenHandler/Screen" instance=ExtResource("4_72ne2")]
 layout_mode = 2
@@ -175,7 +116,47 @@ mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
+[node name="MizukoTether" type="Control" parent="ScreenHandler"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.95679015
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="NotifsDock" type="VBoxContainer" parent="ScreenHandler"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.94900006
+offset_left = -277.0
+offset_bottom = 0.047973633
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ScreenHandler"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 784.0
+offset_right = -1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8i7xe")
+
+[node name="Button" type="Button" parent="ScreenHandler/PanelContainer"]
+layout_mode = 2
+text = "Proceed to the next day"
+script = ExtResource("12_cd0u5")
+metadata/_edit_lock_ = true
+
 [node name="Shaders" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="CRT" type="ColorRect" parent="Shaders"]
 material = SubResource("ShaderMaterial_yp4ya")
@@ -186,3 +167,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="ScreenHandler/PanelContainer/Button" to="ScreenHandler/PanelContainer/Button" method="_on_pressed"]

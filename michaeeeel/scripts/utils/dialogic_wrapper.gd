@@ -17,11 +17,20 @@ func line_filter(line: DialogueLine) -> DialogueLine:
 	if not line: return
 	if line.tags.is_empty(): return line
 	for tag: String in line.tags:
+		if tag.begins_with("set_flag="):
+			handle_setter(tag)
+			continue
 		print_rich("Attempting to check if tag [color=yellow]"+tag+"[/color] is true.")
 		if not Gamestate.get_flag(tag): 
 			print_rich("[color=red]Tag "+tag+" failed check.")
 			return null
 	return line
+
+func handle_setter(tag: String) -> void:
+	print_rich("[color=green]Setter flag detected! "+tag)
+	var setter := tag.split("=")[1]
+	print("Setter:"+setter)
+	Gamestate.nonpropagating_event.emit(setter)
 
 func get_next_line() -> DialogueLine:
 	var line := await DialogueManager.get_next_dialogue_line(dialogue_res, current_id)

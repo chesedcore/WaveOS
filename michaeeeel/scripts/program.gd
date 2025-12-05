@@ -78,3 +78,7 @@ func _tween_window_to_size(t: Tween, target_size: Vector2, duration: float = 0.4
 
 	t.tween_property(window, "size", target_size, duration)
 	t.parallel().tween_property(window, "position", target_pos, duration)
+
+func get_process() -> Minigame:
+	assert(subviewport.get_child_count() == 1)
+	return subviewport.get_child(0)

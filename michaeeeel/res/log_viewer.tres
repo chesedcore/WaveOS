@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProgramResource" load_steps=3 format=3 uid="uid://bkwvm1iiogd6a"]
+
+[ext_resource type="Texture2D" uid="uid://ckubsrq20h0nr" path="res://assets/comment.png" id="1_jdv5j"]
+[ext_resource type="Script" uid="uid://c3bj2gfj3quip" path="res://scripts/program_res.gd" id="2_n2vw6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_n2vw6")
+name = "LogViewer"
+icon = ExtResource("1_jdv5j")
+program = "uid://c132fsj3py8hy"
+dupeable = true
+metadata/_custom_type_script = "uid://c3bj2gfj3quip"

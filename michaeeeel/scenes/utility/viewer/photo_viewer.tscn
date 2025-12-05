@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsp1r4s4d6b2y"]
+
+[ext_resource type="Texture2D" uid="uid://doip4wp2p2rn8" path="res://icon.svg" id="1_a6t3o"]
+[ext_resource type="Script" uid="uid://duv0356e2lila" path="res://scripts/utils/photo_viewer.gd" id="1_nur8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nur8e"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyuaf"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.080783345, 0.080783345, 0.0807833, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 12
+
+[node name="PhotoViewer" type="PanelContainer" node_paths=PackedStringArray("image_name", "image")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nur8e")
+script = ExtResource("1_nur8e")
+image_name = NodePath("Control/VBoxContainer/ImageName")
+image = NodePath("Control/VBoxContainer/PanelContainer/Image")
+
+[node name="Control" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+
+[node name="ImageName" type="RichTextLabel" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "thanks to the godot engine!!!!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyuaf")
+
+[node name="Image" type="TextureRect" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_a6t3o")
+stretch_mode = 5

@@ -7,13 +7,15 @@ const INDETERMINATE := "balls"
 var wrapper: DialogueWrapper
 
 var needs_rebuild: bool = false
+var repr: Texture
 
 ##a dict that maps the choices id to the chosen response id
 var choices_cache: Dictionary[String, Response]
 
-static func from(dialogue_file: StringName) -> ChatRes:
+static func from(dialogue_file: StringName, repr_tx: Texture) -> ChatRes:
 	var chat := new()
 	chat.wrapper = DialogueWrapper.from(dialogue_file)
+	chat.repr = repr_tx
 	return chat
 
 func get_next_dialogue() -> ChatItem:
@@ -28,7 +30,7 @@ func get_next_dialogue() -> ChatItem:
 func get_message_from(line: DialogueLine) -> Message:
 	var user: User = Data.username_to_user[line.character]
 	var text := line.text
-	var timestamp := "REPLACE_THIS_LATER"
+	var timestamp := Data.systime
 	return Message.from(user, text, timestamp)
 
 func get_choice_pane_from(line: DialogueLine) -> ChatItem:
@@ -60,7 +62,7 @@ func get_next_cached(seen: Array[String]) -> ChatItem:
 	
 	return Message.from(
 		Data.username_to_user[line.character],
-		line.text, "REPLACE_THIS_SHIT_SOON"
+		line.text, Data.systime
 	)
 
 func force_roll() -> void:

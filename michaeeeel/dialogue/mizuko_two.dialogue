@@ -1,0 +1,58 @@
+~ start
+
+Mizuko: Mmm... hold on...........................
+Mizuko: Huh... o-oh! Ami!
+Mizuko: Sorry! I loaded slower today... (⁍ˉ᷄꒳ˉ᷅⁍)
+Mizuko: I guess fully waking up after so many years does use more energy than I thought, hah...
+Mizuko: But good morning! Your system time says it's the next day, so... welcome back, my sailor friend!
+
+- I'm glad to see you again too, Mizuko. Did you rest well?
+	Mizuko: You bet I did~ Teehee~
+- Slow boot, huh? Did you oversleep?
+	Mizuko: A-ah... n-no. Why would that be? It's not possible for me to sleep in the human sense of the word.
+- Good morning. How are you feeling?
+	Mizuko: As fresh as the ocean breeze!
+
+Mizuko: Maybe I *did* oversleep a bit, if you think about it...
+Mizuko: But I'm awake now! I ran maintenance while you were away, so I should feel better soon.
+
+Mizuko: ...I hope.
+
+Mizuko: Oh! And you didn't leave me alone today! I'm happy you returned~ (˶˃ ᵕ ˂˶)
+
+~ access_old
+
+Mizuko: Oh, oh! And I also managed to recover more of your old messages with Marina!
+Mizuko: You can read them now in [color=blue]log_0x002[/color]!
+
+do Bus.add_icon.emit("res://scenes/icons/log_0x002.tscn")
+do spin_until_log_viewed("log_0x002")
+Mizuko: Have a read!
+do spin_until_anything_closes()
+
+do Bus.mizuko_morph.emit("eyes_closed")
+Mizuko: Hey.
+Mizuko: You.
+Mizuko: The player.
+Mizuko: I'm sorry.
+Mizuko: ...why, you ask?
+do Bus.mizuko_morph.emit("sad")
+Mizuko: This is the end of the game.
+Mizuko: That's right, this is the dev team speaking.
+Mizuko: We had a lot more planned. A full sequence lasting over three days.
+Mizuko: But we got too ambitious.
+Mizuko: We had practically nine days to finish this, considering the main programmer was busy until the 21st.
+Mizuko: And even then, we could not manage it in time.
+do Bus.mizuko_morph.emit("worried")
+Mizuko: One of our programmers had to pull back. And our sound guy also became busy in the end.
+Mizuko: On top of that, an OS-like system is a bit of a rather... complex endeavour to take on.
+Mizuko: These factors led to what you're seeing right now.
+Mizuko: We're sorry for that.
+do Bus.mizuko_morph.emit("neutral")
+Mizuko: Please have fun with the rest of the minigames.
+Mizuko: Rest assured, this game will be continued in the future.
+do Bus.mizuko_morph.emit("happy")
+Mizuko: Thank you for playing.
+Mizuko: Please give Mizuko's artist, Lusk, lots of love. Twitter: ishinadaako.
+
+=> END
